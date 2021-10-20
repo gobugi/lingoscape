@@ -41,7 +41,7 @@ const NavBar = () => {
     <nav>
       <div className="logo-container">
         <NavLink to='/'>
-          <img alt='logo' className="lingoscape-logo" src="logo.png"/>
+          <img alt='logo' className="lingoscape-logo" src="https://raw.githubusercontent.com/gobugi/lingoscape/main/react-app/public/logo.png"/>
         </NavLink>
         <NavLink id="nav-lingoscape" to='/'>
           &nbsp;&nbsp;&nbsp;<span>Lingoscape</span>
