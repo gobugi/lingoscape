@@ -1,7 +1,9 @@
 body { margin: 0; padding: 0; background-color: white; max-width: 100%; overflow-x: hidden;}
 
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
 
 
 @font-face {
@@ -52,9 +54,26 @@ nav {
   justify-content: flex-end;
   max-width: 100%;
   width: 100%;
-
-
+  justify-content: space-around;
 }
+
+/* .navbar-flashcards-container {
+  color: black;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  background-color: white;
+  display: flex;
+  font-weight: 400;
+  height: 100%;
+  justify-content: flex-end;
+  max-width: 100%;
+  width: 100%;
+  justify-content: space-around;
+  margin-right: 1.3rem;
+  line-height: 1.125rem;
+  padding-top: 36px;
+} */
 
 #nav-lingoscape {
   font-family: mont;
@@ -116,6 +135,17 @@ nav {
   color: black;
   font-size: 13px;
   font-weight: bold;
+  background-color: #FAFBFB;
+
+
+
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  height: 100%;
+  justify-content: center;
+  line-height: 1.125rem;
+  width: 50%;
 }
 
 #nav-login:link {
@@ -126,6 +156,8 @@ nav {
 #nav-login:hover {
   text-decoration: none;
   color: black;
+  background-color: #EFF2F2;
+  font-size: 14px;
 }
 
 #nav-login:visited {
@@ -135,22 +167,80 @@ nav {
 
 #nav-signup {
   text-decoration: none;
-  color: black;
-  font-size: 13px;
-  font-weight: bold;
+  color: white;
+  font-size: calc(12px + 2 * ((100vw - 320px ) / 1600 ));
+  background-color: #FF8A47;
+
+
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  height: 100%;
+  justify-content: center;
+  line-height: 1.125rem;
+  width: 50%;
 }
+
 
 #nav-signup:link {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 #nav-signup:hover {
   text-decoration: none;
-  color: black;
+  color: white;
+  background-color: #FF8243;
+  font-size: 14px;
 }
 
 #nav-signup:visited {
   text-decoration: none;
+  color: white;
+}
+
+#log-btns {
+  display: flex;
+  width: 28rem;
+}
+
+#nav-btns {
   color: black;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  background-color: white;
+  display: flex;
+  font-weight: 400;
+  height: 100%;
+  justify-content: flex-end;
+  max-width: 100%;
+  width: 100%;
+  margin-right: 2.1rem;
+  line-height: 1.125rem;
+  margin-left: auto;
+}
+
+#nav-find-flashcards {
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  line-height: 1.125rem;
+  width: 8rem;
+}
+
+#nav-make-flashcards {
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  line-height: 1.125rem;
+  width: 8rem;
+}
+
+#nav-separator {
+  width: 2rem;
 }

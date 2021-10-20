@@ -1,0 +1,14 @@
+main {
+  margin-top: 72px;
+  width: 100%;
+  overflow: hidden;
+}
+
+#home-main {
+  margin-top: 0;
+}
+
+main>img {
+  width: 100%;
+  min-height: 100%;
+}
