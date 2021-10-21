@@ -10,6 +10,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    # profilePic = db.Column(db.String, nullable=True)
+
+    decks = db.relationship('Deck', back_populates='author', cascade="all, delete")
 
     @property
     def password(self):
@@ -26,5 +29,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            # 'profilePic': self.profilePic
         }
