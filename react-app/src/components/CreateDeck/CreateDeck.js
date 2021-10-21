@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { createDeckThunk } from '../../store/newDeck';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+// import { createDeckThunk } from '../../store/newDeck';
 import './CreateDeck.css';
 
 const CreateDeck = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const history = useHistory();
   const sessionUser = useSelector(state => state?.session?.user);
   const currUserId = sessionUser?.id;
 
   const [title, setTitle] = useState("");
   const [languageId, setLanguageId] = useState("");
+  const [errors , setErrors] = useState([]);
 
 
   const langArr = ["Arabic", "Basque", "Bulgarian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Galician", "German", "Greek", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai", "Turkish", "Ukrainian", "Vietnamese"]
@@ -18,9 +20,41 @@ const CreateDeck = () => {
 
 
 
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setErrors([]);
+
+    const newDeck = {
+      title,
+      "authorId": currUserId,
+      "languageId": parseInt(languageId, 10)
+    }
+
+    console.log(newDeck)
+
+    const response = await fetch(`/api/decks`, {
+      method: 'POST',
+      body: JSON.stringify(newDeck),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await response.json();
+
+    return data
+  }
+
+
+
+
+
   return (
     <main>
-      <form id="createDeckForm" >
+      <form id="createDeckForm" onSubmit={handleSubmit}>
         <div className='createDeckTitle'>
           <label className='createDeckLabel'>Deck Title </label>
           <input

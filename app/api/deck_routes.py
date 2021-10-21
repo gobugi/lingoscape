@@ -19,3 +19,21 @@ def decks():
 def create_deck():
     deckForm = createDeckForm()
     deckForm['csrf_token'].data = request.cookies['csrf_token']
+
+    # if deckForm.validate_on_submit():
+
+    #     db.session.add(Deck(title=deckForm.data['title'], authorId=deckForm.data['authorId'], languageId=deckForm.data['languageId']))
+
+    #     db.session.commit()
+    #     return deck.to_dict()
+    # else:
+    #     return {'errors': validation_errors_to_error_messages(deckForm.errors)}, 400
+
+    if deckForm.validate_on_submit():
+        deck = Deck(title=deckForm.data['title'], authorId=deckForm.data['authorId'], languageId=deckForm.data['languageId'])
+
+        db.session.add(deck)
+        db.session.commit()
+        return deck.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(deckForm.errors)}, 400
