@@ -4,13 +4,108 @@ main {
   overflow: hidden;
 }
 
-#home-main {
-  margin-top: 72px;
-}
-
 .splash-images {
   position: relative;
   display: inline-block;
   max-width: 100%;
   min-width: 1900px;
+}
+
+.message-container {
+  bottom: 12%;
+  display: grid;
+  grid-row-gap: 3rem;
+  position: absolute;
+  z-index: 2;
+  margin-right: 4%;
+  margin-left: 4%;
+  margin-bottom: 3%;
+}
+
+.message-container>h1 {
+  font-size: 9rem;
+  color: #fff;
+  font-family: mont;
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  width: 8em;
+}
+
+.message-container>h2 {
+  font-size: 2rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 4rem;
+  line-height: 0;
+}
+
+.message-container>h2>b {
+  font-weight: 600;
+}
+
+.home-btn-container {
+  display: flex;
+  margin-left: 10px;
+}
+
+#find-btn {
+  align-items: center;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.90rem;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  text-decoration: none;
+  width: 276px;
+  height: 84px;
+  background-color: #3faee0;
+}
+
+#find-btn:hover {
+text-decoration: none;
+font-size: 0.95rem;
+background-color: #29A5DC;
+}
+
+#find-btn:link {
+  text-decoration: none;
+}
+
+#find-btn:visited {
+  text-decoration: none;
+}
+
+
+#make-btn {
+  align-items: center;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.90rem;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  text-decoration: none;
+  width: 276px;
+  height: 84px;
+  background-color: white;
+  margin-left: 48px;
+}
+
+#make-btn:hover {
+text-decoration: none;
+font-size: 0.95rem;
+background-color: #EEEEEE;
+}
+
+#make-btn:link {
+  text-decoration: none;
+}
+
+#make-btn:visited {
+  text-decoration: none;
 }
