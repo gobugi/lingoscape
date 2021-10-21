@@ -6,6 +6,7 @@ const LogoutButton = () => {
   const dispatch = useDispatch()
   const onLogout = async (e) => {
     await dispatch(logout());
+    window.location.href = "/";
   };
 
   return <button onClick={onLogout}>Logout</button>;
