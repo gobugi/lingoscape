@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Homepage from './components/Homepage/Homepage';
+import CreateDeck from './components/CreateDeck/CreateDeck';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,9 @@ function App() {
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
           </Route>
+          <ProtectedRoute path='/decks/new' exact={true} >
+            <CreateDeck />
+          </ProtectedRoute>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
           </ProtectedRoute>

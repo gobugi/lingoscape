@@ -39,8 +39,8 @@ const Homepage = () => {
           <NavLink id="find-btn" to='/languages'>
             Find Flashcards
           </NavLink>
-          <NavLink id="make-btn" to='/languages'>
-            Find Flashcards
+          <NavLink id="make-btn" to='/decks/new'>
+            Make Flashcards
           </NavLink>
         </div>
       </div>
