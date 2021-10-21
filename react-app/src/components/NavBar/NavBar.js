@@ -1,10 +1,19 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from '../auth/LogoutButton';
 import "./NavBar.css";
 
 const NavBar = () => {
+
+
+  const sessionUser = useSelector(state => state?.session?.user);
+
+  if (sessionUser) {
+    <div id="log-btns"></div>
+  }
+
   return (
 
 
@@ -50,7 +59,7 @@ const NavBar = () => {
       <div className="navbar-items-container">
         <div id="nav-btns">
           <div>
-            <NavLink id="nav-find-flashcards" to='/languages'>
+            <NavLink id="nav-find-flashcards" to='/decks'>
               <i className="fas fa-search"></i>
               &nbsp;<span>Find Flashcards</span>&nbsp;&nbsp;
               <i className="fas fa-caret-down"></i>
@@ -63,18 +72,20 @@ const NavBar = () => {
             </NavLink>
           </div>
         </div>
-        <div id="log-btns">
-          <NavLink id="nav-login" to='/login'>
-            <div>
-              <span>Log In</span>
-            </div>
-          </NavLink>
-          <NavLink id="nav-signup" to='/sign-up' exact={true} activeClassName='active'>
-            <div>
-              <span>Get Started</span>
-            </div>
-          </NavLink>
-        </div>
+        {!sessionUser &&
+          <div id="log-btns">
+            <NavLink id="nav-login" to='/login'>
+              <div>
+                <span>Log In</span>
+              </div>
+            </NavLink>
+            <NavLink id="nav-signup" to='/sign-up' exact={true} activeClassName='active'>
+              <div>
+                <span>Get Started</span>
+              </div>
+            </NavLink>
+          </div>
+        }
       </div>
     </nav>
   );

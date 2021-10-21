@@ -10,6 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Homepage from './components/Homepage/Homepage';
 import CreateDeck from './components/CreateDeck/CreateDeck';
+import AllDecks from './components/AllDecks/AllDecks';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +35,12 @@ function App() {
 				<Switch>
 					<Route path="/" exact={true}>
 						<Homepage />
+          </Route>
+					<Route path="/decks" exact={true}>
+						<AllDecks />
+          </Route>
+          <Route path="/dashboard" exact={true}>
+						<Dashboard />
           </Route>
           <Route path='/login' exact={true}>
             <LoginForm />

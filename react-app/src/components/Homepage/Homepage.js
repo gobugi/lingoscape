@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import "./Homepage.css";
 import Carousel from "react-responsive-carousel/lib/js/components/Carousel/index";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+
 const Homepage = () => {
+
+  const sessionUser = useSelector(state => state?.session?.user);
+  
+  if (sessionUser) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <main id="home-main">
@@ -36,7 +44,7 @@ const Homepage = () => {
           <b>all learners</b>
         </h2>
         <div className="home-btn-container">
-          <NavLink id="find-btn" to='/languages'>
+          <NavLink id="find-btn" to='/decks'>
             Find Flashcards
           </NavLink>
           <NavLink id="make-btn" to='/decks/new'>
