@@ -22,7 +22,7 @@ def single_deck(id):
 
 
 
-@deck_routes.route('/', methods=['POST'])
+@deck_routes.route('', methods=['POST'])
 @login_required
 def create_deck():
     deckForm = createDeckForm()
