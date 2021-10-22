@@ -37,7 +37,7 @@ const CreateDeck = () => {
     }
 
 
-    const response = await fetch(`/api/decks/`, {
+    const response = await fetch(`/api/decks`, {
       method: 'POST',
       body: JSON.stringify(newDeck),
       headers: {
@@ -48,6 +48,12 @@ const CreateDeck = () => {
     const data = await response.json();
 
     setDeckId(data?.id)
+
+    document.getElementById("createDeckForm").style.display="none";
+    document.getElementById("createCardForm").style.display="block";
+
+
+
 
     return data
   }
@@ -65,7 +71,7 @@ const CreateDeck = () => {
     }
 
 
-    const response = await fetch(`/api/cards/`, {
+    const response = await fetch(`/api/cards`, {
       method: 'POST',
       body: JSON.stringify(newCard),
       headers: {
@@ -75,66 +81,68 @@ const CreateDeck = () => {
 
     const data = await response.json();
 
+    const cardsUL = document.getElementById("createdCardsList");
+    const cardsLi = document.createElement("li");
+    const cardsSpan1 = document.createElement("span");
+    const cardsSpan2 = document.createElement("span");
+
+    cardsUL.appendChild(cardsLi);
+
+    cardsLi.appendChild(cardsSpan1);
+    cardsLi.appendChild(cardsSpan2);
+
+    cardsSpan1.innerHTML = question;
+    cardsSpan2.innerHTML = answer;
+
+    const cardsTextInput = document.getElementsByClassName("cardInput");
+    cardsTextInput.value = '';
+    cardsTextInput.placeholder = '';
+
+    setQuestion('');
+    setAnswer('')
+
+    document.getElementById("done-btn").style.display="block";
+
     return data
   }
 
 
-  // useEffect(() => {
+//   useEffect(() => {
 
-  //   async function deck_cards() {
-  //     const response = await fetch(`/api/cards`);
-  //     const responseData = await response.json();
+//     async function deck_id_cards() {
+//       const response = await fetch(`/decks/${deckId}/cards`);
+//       const responseData = await response.json();
+//       setDeckCards(responseData);
+//     }
 
-  //     const cards = responseData?.cards
-  //     const this_deck_cards = [];
+//     deck_id_cards();
+//   }, []);
 
-  //     cards?.forEach(card => {
-  //       if (deckId === card?.deckId) {
-  //         this_deck_cards?.push(card)
-  //       }
-  //     })
-
-  //     setDeckCards(this_deck_cards);
-  //   }
+console.log(deckCards && deckCards)
 
 
-  //   deck_cards();
-  // }, []);
 
-  // console.log(deckCards)
 
-  // useEffect(() => {
-
-  //   async function single_deck() {
-  //     const response = await fetch(`/api/decks/${deckId}`);
-  //     const responseData = await response.json();
-  //     setDeck(responseData);
-  //   }
-
-  //   single_deck();
-  // }, []);
-
-  // // const cardsArr = deck && (deck?.deck[0]?.cards)
 
   return (
     <main>
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
         <div className='createDeck'>
-          <label className='createDeckTitle'>Deck Title </label>
+          <label className='createDeckTitle'></label>
           <input
             className='textInput'
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder='Deck Title'
+            placeholder='Deck Name'
           />
         </div>
         <div className='createDeck'>
-          <label className='selectDeckLanguage'>Select a Language </label>
+          <label className='selectDeckLanguage'></label>
             <select
               className='langSelect'
               onChange={(e) => setLanguageId(e.target.value)}>
-              <option>-- select --</option>
+              <option>-- Language --</option>
               {langArr?.map((lang, i) => (
                 <option value={i += 1}>{lang}</option>
               ))}
@@ -143,15 +151,14 @@ const CreateDeck = () => {
         <button className='create-deck-btn'>Create Deck</button>
       </form>
 
+      <h1 id="createdTitle">{title}</h1>
+      <ul id="createdCardsList" />
 
-<hr />
-
-
-      <form id="createCardForm" onSubmit={handleCardSubmit}>
+      <form id="createCardForm" onSubmit={handleCardSubmit} style={{display:"none"}}>
         <div className='createCard'>
           <label className='createCardQuestion'>{langArr[languageId - 1]}: </label>
           <input
-            className='textInput'
+            className='textInput cardInput'
             type="text"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
@@ -161,7 +168,7 @@ const CreateDeck = () => {
         <div className='createCard'>
           <label className='createCardAnswer'>English: </label>
           <input
-            className='textInput'
+            className='textInput cardInput'
             type="text"
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
@@ -171,21 +178,11 @@ const CreateDeck = () => {
         <button className='create-card-btn'>Add Card</button>
       </form>
 
-
-      <hr />
-
-      <h1>{title}</h1>
-      <ul>
-        {deckCards && deckCards?.map(card => {
-          <li>
-            {card?.question}, {card?.answer}
-          </li>
-        }) }
-      </ul>
-
-
-
-
+      <NavLink id="done-btn" to='/dashboard' exact={true} style={{display:"none"}}>
+        <div>
+          <span>Done</span>
+        </div>
+      </NavLink>
     </main>
   )
 }
