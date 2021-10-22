@@ -35,7 +35,7 @@ const CreateDeck = () => {
 
     console.log(newDeck)
 
-    const response = await fetch(`/api/decks`, {
+    const response = await fetch(`/api/decks/`, {
       method: 'POST',
       body: JSON.stringify(newDeck),
       headers: {
