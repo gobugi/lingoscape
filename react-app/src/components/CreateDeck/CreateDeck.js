@@ -23,13 +23,17 @@ const CreateDeck = () => {
   const [answer, setAnswer] = useState("");
   const [deckCards, setDeckCards] = useState("");
 
+  const [tempTitle, setTempTitle] = useState("");
+
+
+
 
   const handleDeckSubmit = async (e) => {
     e.preventDefault()
     setErrors([]);
 
     const newDeck = {
-      title,
+      "title": tempTitle,
       "authorId": currUserId,
       "languageId": parseInt(languageId, 10)
     }
@@ -122,8 +126,8 @@ const CreateDeck = () => {
           <input
             className='textInput'
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={tempTitle}
+            onChange={(e) => setTempTitle(e.target.value)}
             placeholder='Deck Title'
           />
         </div>
@@ -172,7 +176,7 @@ const CreateDeck = () => {
 
       <hr />
 
-      <h1>{title}</h1>
+      <h1>{tempTitle}</h1>
       <ul>
         {deckCards && deckCards?.map(card => {
           <li>
