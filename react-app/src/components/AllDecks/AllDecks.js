@@ -46,8 +46,6 @@ const AllDecks = () => {
     newArr?.push(langArr[langId - 1])
   })
 
-  console.log(decks)
-
   return (
     <main>
       <div className="all-decks-container">
