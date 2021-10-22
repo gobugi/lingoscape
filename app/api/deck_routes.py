@@ -3,6 +3,7 @@ from app.models import Deck, User, Card, Language, db
 from flask_login import login_required, current_user
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.forms import createDeckForm
+from colors import *
 
 
 deck_routes = Blueprint('decks', __name__)
@@ -21,11 +22,13 @@ def single_deck(id):
 
 
 
-@deck_routes.route('', methods=['POST'])
+@deck_routes.route('/', methods=['POST'])
 @login_required
 def create_deck():
     deckForm = createDeckForm()
     deckForm['csrf_token'].data = request.cookies['csrf_token']
+
+    print(CGREEN, "\n", deckForm.data, "\n", CEND)
 
     if deckForm.validate_on_submit():
         deck = Deck(title=deckForm.data['title'], authorId=deckForm.data['authorId'], languageId=deckForm.data['languageId'])
