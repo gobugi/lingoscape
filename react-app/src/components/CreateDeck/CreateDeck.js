@@ -23,8 +23,6 @@ const CreateDeck = () => {
   const [answer, setAnswer] = useState("");
   const [deckCards, setDeckCards] = useState("");
 
-  const [tempTitle, setTempTitle] = useState("");
-
 
 
 
@@ -33,13 +31,13 @@ const CreateDeck = () => {
     setErrors([]);
 
     const newDeck = {
-      "title": tempTitle,
+      "title": title,
       "authorId": currUserId,
       "languageId": parseInt(languageId, 10)
     }
 
 
-    const response = await fetch(`/api/decks`, {
+    const response = await fetch(`/api/decks/`, {
       method: 'POST',
       body: JSON.stringify(newDeck),
       headers: {
@@ -67,7 +65,7 @@ const CreateDeck = () => {
     }
 
 
-    const response = await fetch(`/api/cards`, {
+    const response = await fetch(`/api/cards/`, {
       method: 'POST',
       body: JSON.stringify(newCard),
       headers: {
@@ -126,8 +124,8 @@ const CreateDeck = () => {
           <input
             className='textInput'
             type="text"
-            value={tempTitle}
-            onChange={(e) => setTempTitle(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder='Deck Title'
           />
         </div>
@@ -176,7 +174,7 @@ const CreateDeck = () => {
 
       <hr />
 
-      <h1>{tempTitle}</h1>
+      <h1>{title}</h1>
       <ul>
         {deckCards && deckCards?.map(card => {
           <li>
