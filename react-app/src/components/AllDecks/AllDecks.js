@@ -17,7 +17,7 @@ const AllDecks = () => {
   useEffect(() => {
 
     async function all_decks() {
-      const response = await fetch('/api/decks');
+      const response = await fetch('/api/decks/');
       const responseData = await response.json();
       setDecks(responseData);
     }
@@ -54,12 +54,12 @@ const AllDecks = () => {
         {newArr && newArr?.map((lang) => (
           <div className="lang-container">
             <h1>{lang}</h1>
-            <li>
+            <ul>
             {decks && decks?.decks?.map((deck) => (
               currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
-              <ul>{deck?.title}</ul>
+              <li>{deck?.title}</li>
             ))}
-            </li>
+            </ul>
           </div>
         ))}
       </div>

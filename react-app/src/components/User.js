@@ -33,9 +33,6 @@ function User() {
         <li>
           <strong>Email</strong> {user.email}
         </li>
-        <li>
-          <LogoutButton />
-        </li>
       </ul>
     </main>
   );

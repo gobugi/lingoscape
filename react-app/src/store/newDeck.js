@@ -12,7 +12,7 @@ export const createDeckThunk = (newDeck) => async () => {
 
   } else if (resDeck.status < 500) {
       const data = await resDeck.json();
-      
+
       if (data.errors) {
           return data;
       }
