@@ -33,9 +33,8 @@ const CreateDeck = () => {
       "languageId": parseInt(languageId, 10)
     }
 
-    console.log(newDeck)
 
-    const response = await fetch(`/api/decks/`, {
+    const response = await fetch(`/api/decks`, {
       method: 'POST',
       body: JSON.stringify(newDeck),
       headers: {
