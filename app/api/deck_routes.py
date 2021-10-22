@@ -14,7 +14,7 @@ def decks():
     decks = Deck.query.all()
     return {'decks': [deck.to_dict() for deck in decks]}
 
-@deck_routes.route('', methods=['POST'])
+@deck_routes.route('/', methods=['POST'])
 @login_required
 def create_deck():
     deckForm = createDeckForm()
