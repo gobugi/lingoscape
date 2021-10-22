@@ -14,7 +14,7 @@ def cards():
     return {'cards': [card.to_dict() for card in cards]}
 
 
-@card_routes.route('', methods=['POST'])
+@card_routes.route('/', methods=['POST'])
 @login_required
 def create_card():
     cardForm = createCardForm()
