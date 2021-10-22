@@ -16,6 +16,7 @@ const AllDecks = () => {
 
   useEffect(() => {
 
+    // maybe trailing slash is an issue
     async function all_decks() {
       const response = await fetch('/api/decks');
       const responseData = await response.json();
