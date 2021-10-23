@@ -39,9 +39,9 @@ function App() {
 					<Route path="/decks" exact={true}>
 						<AllDecks />
           </Route>
-          <Route path="/dashboard" exact={true}>
+          <ProtectedRoute path="/dashboard" exact={true}>
 						<Dashboard />
-          </Route>
+          </ProtectedRoute>
           <Route path='/login' exact={true}>
             <LoginForm />
           </Route>
