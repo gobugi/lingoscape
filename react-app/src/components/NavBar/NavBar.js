@@ -1,52 +1,35 @@
-
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import LogoutButton from '../auth/LogoutButton';
 import "./NavBar.css";
 
 const NavBar = () => {
 
+  const [showMenu, setShowMenu] = useState(false);
 
   const sessionUser = useSelector(state => state?.session?.user);
+  const userId = sessionUser?.id;
 
-  if (sessionUser) {
-    <div id="log-btns"></div>
-  }
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
 
   return (
-
-
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <NavLink to='/' exact={true} activeClassName='active'>
-    //         Home
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/login' exact={true} activeClassName='active'>
-    //         Login
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/sign-up' exact={true} activeClassName='active'>
-    //         Sign Up
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <NavLink to='/users' exact={true} activeClassName='active'>
-    //         Users
-    //       </NavLink>
-    //     </li>
-    //     <li>
-    //       <LogoutButton />
-    //     </li>
-    //   </ul>
-    // </nav>
-
-
-
     <nav>
       <div className="logo-container">
         <NavLink to='/'>
@@ -72,7 +55,9 @@ const NavBar = () => {
             </NavLink>
           </div>
         </div>
-        {!sessionUser &&
+
+        {!sessionUser ?
+
           <div id="log-btns">
             <NavLink id="nav-login" to='/login'>
               <div>
@@ -85,7 +70,24 @@ const NavBar = () => {
               </div>
             </NavLink>
           </div>
+
+          :
+
+          <div>
+          <i onClick={openMenu} className="fas fa-user-circle fa-3x"></i>
+          {showMenu && (
+            <div>
+              <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
+                <li key={`userId-${userId}`}>{sessionUser.username}</li>
+                <li key={`email-${sessionUser?.email}`}>{sessionUser.email}</li>
+                <li key={`username-${sessionUser?.username}`}><LogoutButton /></li>
+              </ul>
+            </div>
+          )}
+        </div>
+
         }
+
       </div>
     </nav>
   );

@@ -51,6 +51,7 @@ const CreateDeck = () => {
 
     document.getElementById("createDeckForm").style.display="none";
     document.getElementById("createCardForm").style.display="block";
+    document.getElementById("createdTitle").style.visibility="visible";
 
 
 
@@ -106,26 +107,14 @@ const CreateDeck = () => {
     return data
   }
 
-
-//   useEffect(() => {
-
-//     async function deck_id_cards() {
-//       const response = await fetch(`/decks/${deckId}/cards`);
-//       const responseData = await response.json();
-//       setDeckCards(responseData);
-//     }
-
-//     deck_id_cards();
-//   }, []);
-
-console.log(deckCards && deckCards)
-
-
-
-
+// console.log(deckCards && deckCards)
 
   return (
     <main>
+      <div id="createdTitle" style={{visibility:"hidden"}}>
+        <h1>{title}</h1>
+      </div>
+
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
         <div className='createDeck'>
           <label className='createDeckTitle'></label>
@@ -151,7 +140,6 @@ console.log(deckCards && deckCards)
         <button className='create-deck-btn'>Create Deck</button>
       </form>
 
-      <h1 id="createdTitle">{title}</h1>
       <ul id="createdCardsList" />
 
       <form id="createCardForm" onSubmit={handleCardSubmit} style={{display:"none"}}>

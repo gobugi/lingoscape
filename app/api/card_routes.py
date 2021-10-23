@@ -14,10 +14,10 @@ def cards():
     return {'cards': [card.to_dict() for card in cards]}
 
 
-@card_routes.route('/decks/<int:id>/cards')
-def deck_id_cards(deckId):
-    deck_id_cards = Card.query.filter_by(deckId=deckId)
-    return {'deck_id_cards': [card.to_dict() for card in deck_id_cards]}
+# @card_routes.route('/<int:id>/deck')
+# def deck_id_cards(deckId):
+#     deck_id_cards = Card.query.filter_by(deckId=deckId)
+#     return {'deck_id_cards': [card.to_dict() for card in deck_id_cards]}
 
 
 @card_routes.route('', methods=['POST'])

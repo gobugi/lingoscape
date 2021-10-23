@@ -16,7 +16,6 @@ const AllDecks = () => {
 
   useEffect(() => {
 
-    // maybe trailing slash is an issue
     async function all_decks() {
       const response = await fetch('/api/decks/');
       const responseData = await response.json();
@@ -25,9 +24,6 @@ const AllDecks = () => {
 
     all_decks();
   }, []);
-
-// map this ====> decks?.decks
-// console.log((decks && decks?.decks[0]?.languageId))
 
   const currLangArr = [];
 
