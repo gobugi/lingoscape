@@ -10,7 +10,7 @@ card_routes = Blueprint('cards', __name__)
 
 @card_routes.route('/')
 def cards():
-    cards = Card.query.all()
+    cards = Card.query.order_by(Card.id.asc())
     return {'cards': [card.to_dict() for card in cards]}
 
 
