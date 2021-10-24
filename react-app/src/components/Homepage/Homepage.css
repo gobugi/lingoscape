@@ -1,8 +1,9 @@
-main {
+#home-main {
   margin-top: 72px;
   width: 100%;
-  overflow: hidden;
+  position: fixed;
 }
+
 
 .splash-images {
   position: relative;

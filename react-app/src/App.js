@@ -12,6 +12,7 @@ import Homepage from './components/Homepage/Homepage';
 import CreateDeck from './components/CreateDeck/CreateDeck';
 import AllDecks from './components/AllDecks/AllDecks';
 import Dashboard from './components/Dashboard/Dashboard';
+import SingleDeck from './components/SingleDeck/SingleDeck';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +37,12 @@ function App() {
 					<Route path="/" exact={true}>
 						<Homepage />
           </Route>
+          <ProtectedRoute path='/decks/new' exact={true} >
+            <CreateDeck />
+          </ProtectedRoute>
+					<Route path="/decks/:deckId" exact={true}>
+						<SingleDeck />
+          </Route>
 					<Route path="/decks" exact={true}>
 						<AllDecks />
           </Route>
@@ -48,9 +55,6 @@ function App() {
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
           </Route>
-          <ProtectedRoute path='/decks/new' exact={true} >
-            <CreateDeck />
-          </ProtectedRoute>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
           </ProtectedRoute>

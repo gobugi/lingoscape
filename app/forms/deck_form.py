@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 
-class createDeckForm(FlaskForm):
+class DeckForm(FlaskForm):
     languageId = IntegerField(
         'languageId', validators=[DataRequired()])
     authorId = IntegerField(
