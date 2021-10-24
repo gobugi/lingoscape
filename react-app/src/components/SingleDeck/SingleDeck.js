@@ -33,6 +33,7 @@ const SingleDeck = () => {
 	}, []);
 
 
+
   const renameDeck = async (e) => {
     e.preventDefault()
 
@@ -57,14 +58,24 @@ const SingleDeck = () => {
   const updateCard = async (e) => {
     e.preventDefault()
 
+    if (!currentQuestion) {
+      setCurrentQuestion(currentCard?.question)
+    }
+
+    if (!currentAnswer) {
+      setCurrentAnswer(currentCard?.answer)
+    }
+
+
     const editCard = {
+
       "question": currentQuestion,
       "answer": currentAnswer
     }
 
 
     /////////////////////MAKE THIS CARD ID DYNAMIC///////////////////////////
-    const cardData = await fetch(`/api/cards/60`, {
+    const cardData = await fetch(`/api/cards/${currentCard?.id}`, {
       method: 'PATCH',
       body: JSON.stringify(editCard),
       headers: {
@@ -89,13 +100,17 @@ const SingleDeck = () => {
 };
 
 
+const myCards = currentDeck?.cards;
 
+const myOrderedCards = myCards?.sort(function(a, b) {
+  return a?.id - b?.id;
+});
 
 
   return (
     <main id="main-dashboard">
-      <h2>Welcome</h2>
-      <h1>Deck: {currentTitle && currentTitle}</h1>
+      <h1>Welcome</h1>
+      <h2>{currentTitle && currentTitle}</h2>
       { currentDeck?.authorId === userId && <form id="edit-title" onSubmit={renameDeck}>
         <input
           className='textInput'
@@ -115,21 +130,21 @@ const SingleDeck = () => {
           </li>
         ))}
 
-        {(currentDeck?.authorId === userId) && currentDeck?.cards?.map(card => (
+        {(currentDeck?.authorId === userId) && myOrderedCards?.map(card => (
           <li>
             <form id="edit-card" onSubmit={updateCard}>
               <input
                 className='textInput'
                 type="text"
                 defaultValue={card?.question}
-                onChange={(e) => setCurrentQuestion(e.target.value)}
+                onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(e.target.value) )}
               />
 
               <input
                 className='textInput'
                 type="text"
                 defaultValue={card?.answer}
-                onChange={(e) => setCurrentAnswer(e.target.value)}
+                onChange={(e) => ( setCurrentCard(card), setCurrentAnswer(e.target.value) )}
               />
               <button>Edit</button>
               {/* <button type="button">Delete</button> */}
