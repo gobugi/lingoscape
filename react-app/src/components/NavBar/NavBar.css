@@ -1,4 +1,4 @@
-body { margin: 0; padding: 0; background-color: white; max-width: 100%; overflow-x: hidden;}
+body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overflow-x: hidden;}
 
 
 
@@ -190,6 +190,8 @@ nav {
 #log-btns {
   display: flex;
   width: 28rem;
+  margin-right: 0;
+  margin-top: 0;
 }
 
 #nav-btns {
@@ -231,4 +233,44 @@ nav {
 
 #nav-separator {
   width: 2rem;
+}
+
+.fa-user-circle:hover {
+  cursor: pointer;
+}
+
+.fa-user-circle {
+  font-size: 2.1rem;
+  color: #4B4040;
+  max-width:100%;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 14.95rem;
+  margin-top: 4px;
+}
+
+.profile-logout {
+  margin-top: 15px;
+  margin-right: 60px;
+  text-align: right;
+}
+
+.dropdown-div {
+  margin-right: 40px;
+  text-align: right;
+  margin-top: -50px;
+}
+
+.profile-dropdown {
+
+  text-align: right;
+}
+
+.profile-dropdown>* {
+
+  text-align: right;
+}
+
+#logout-btn:hover {
+  cursor: pointer;
 }

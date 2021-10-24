@@ -58,7 +58,7 @@ const NavBar = () => {
 
         {!sessionUser ?
 
-          <div id="log-btns">
+          <div id="log-btns" className="profile-logout">
             <NavLink id="nav-login" to='/login'>
               <div>
                 <span>Log In</span>
@@ -73,10 +73,10 @@ const NavBar = () => {
 
           :
 
-          <div>
+          <div className="profile-logout">
           <i onClick={openMenu} className="fas fa-user-circle fa-3x"></i>
           {showMenu && (
-            <div>
+            <div className="dropdown-div">
               <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
                 <li key={`userId-${userId}`}>{sessionUser.username}</li>
                 <li key={`email-${sessionUser?.email}`}>{sessionUser.email}</li>
