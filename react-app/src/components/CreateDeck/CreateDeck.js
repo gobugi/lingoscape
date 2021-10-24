@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import { createDeckThunk } from '../../store/newDeck';
 import './CreateDeck.css';
 
 const CreateDeck = () => {
   // const dispatch = useDispatch();
-  // const history = useHistory();
+  const history = useHistory();
   const sessionUser = useSelector(state => state?.session?.user);
   const currUserId = sessionUser?.id;
 
@@ -49,71 +49,73 @@ const CreateDeck = () => {
 
     setDeckId(data?.id)
 
-    document.getElementById("createDeckForm").style.display="none";
-    document.getElementById("createCardForm").style.display="block";
-    document.getElementById("createdTitle").style.visibility="visible";
+    // document.getElementById("createDeckForm").style.display="none";
+    // document.getElementById("createCardForm").style.display="block";
+    // document.getElementById("createdTitle").style.visibility="visible";
 
-
-
-
+    // return <Redirect to='/dashboard' />;
+    // return history.push(`/decks/${deckId}`);
     return data
   }
 
-
-
-  const handleCardSubmit = async (e) => {
-    e.preventDefault()
-    setErrors([]);
-
-    const newCard = {
-      deckId,
-      question,
-      answer
-    }
-
-
-    const response = await fetch(`/api/cards`, {
-      method: 'POST',
-      body: JSON.stringify(newCard),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    const data = await response.json();
-
-    const cardsUL = document.getElementById("createdCardsList");
-    const cardsLi = document.createElement("li");
-    const cardsSpan1 = document.createElement("span");
-    const cardsSpan2 = document.createElement("span");
-
-    cardsUL.appendChild(cardsLi);
-
-    cardsLi.appendChild(cardsSpan1);
-    cardsLi.appendChild(cardsSpan2);
-
-    cardsSpan1.innerHTML = question;
-    cardsSpan2.innerHTML = answer;
-
-    const cardsTextInput = document.getElementsByClassName("cardInput");
-    cardsTextInput.value = '';
-    cardsTextInput.placeholder = '';
-
-    setQuestion('');
-    setAnswer('')
-
-    document.getElementById("done-btn").style.display="block";
-
-    return data
+  if (deckId) {
+    return <Redirect to={`/decks/${deckId}`} />;
   }
+
+
+  // const handleCardSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setErrors([]);
+
+  //   const newCard = {
+  //     deckId,
+  //     question,
+  //     answer
+  //   }
+
+
+  //   const response = await fetch(`/api/cards`, {
+  //     method: 'POST',
+  //     body: JSON.stringify(newCard),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
+
+  //   const data = await response.json();
+
+  //   const cardsUL = document.getElementById("createdCardsList");
+  //   const cardsLi = document.createElement("li");
+  //   const cardsSpan1 = document.createElement("span");
+  //   const cardsSpan2 = document.createElement("span");
+
+  //   cardsUL.appendChild(cardsLi);
+
+  //   cardsLi.appendChild(cardsSpan1);
+  //   cardsLi.appendChild(cardsSpan2);
+
+  //   cardsSpan1.innerHTML = question;
+  //   cardsSpan2.innerHTML = answer;
+
+  //   const cardsTextInput = document.getElementsByClassName("cardInput");
+  //   cardsTextInput.value = '';
+  //   cardsTextInput.placeholder = '';
+
+  //   setQuestion('');
+  //   setAnswer('')
+
+  //   document.getElementById("done-btn").style.display="block";
+
+  //   return data
+  // }
 
 // console.log(deckCards && deckCards)
 
   return (
     <main>
-      <div id="createdTitle" style={{visibility:"hidden"}}>
+      {/* <div id="createdTitle" style={{visibility:"hidden"}}>
         <h1>{title}</h1>
-      </div>
+      </div> */}
 
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
         <div className='createDeck'>
@@ -131,7 +133,7 @@ const CreateDeck = () => {
             <select
               className='langSelect'
               onChange={(e) => setLanguageId(e.target.value)}>
-              <option>-- Language --</option>
+              <option>&nbsp;&nbsp;&nbsp;-- Select Language --&nbsp;&nbsp;&nbsp;</option>
               {langArr?.map((lang, i) => (
                 <option value={i += 1}>{lang}</option>
               ))}
@@ -140,7 +142,7 @@ const CreateDeck = () => {
         <button className='create-deck-btn'>Create Deck</button>
       </form>
 
-      <ul id="createdCardsList" />
+      {/* <ul id="createdCardsList" />
 
       <form id="createCardForm" onSubmit={handleCardSubmit} style={{display:"none"}}>
         <div className='createCard'>
@@ -164,13 +166,13 @@ const CreateDeck = () => {
           />
         </div>
         <button className='create-card-btn'>Add Card</button>
-      </form>
+      </form> */}
 
-      <NavLink id="done-btn" to='/dashboard' exact={true} style={{display:"none"}}>
+      {/* <NavLink id="done-btn" to='/dashboard' exact={true} style={{display:"none"}}>
         <div>
           <span>Done</span>
         </div>
-      </NavLink>
+      </NavLink> */}
     </main>
   )
 }
