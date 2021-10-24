@@ -52,7 +52,9 @@ const AllDecks = () => {
             <ul>
             {decks && decks?.decks?.map((deck) => (
               currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
-              <li>{deck?.title}</li>
+              <li>
+                <NavLink to={`/decks/${deck?.id}`}>{deck?.title}</NavLink>
+              </li>
             ))}
             </ul>
           </div>

@@ -8,61 +8,39 @@ const Dashboard = () => {
 	const sessionUser = useSelector((state) => state?.session?.user);
 	const userId = sessionUser?.id;
 
-  const [errors , setErrors] = useState([]);
-	const [currentDeck, setCurrentDeck] = useState([]);
-	const [currentTitle, setCurrentTitle] = useState([]);
+  const [errors, setErrors] = useState([]);
+	const [allDecks, setAllDecks] = useState([]);
+	const [myDecks, setMyDecks] = useState([]);
+
+
+
 
   useEffect(() => {
     async function my_deck() {
-			const response = await fetch('/api/decks/3');
+			const response = await fetch(`/api/decks/`);
 			const responseData = await response.json();
-			setCurrentDeck(responseData?.deck[0]);
-      setCurrentTitle(responseData?.deck[0]?.title)
+			setAllDecks(responseData?.decks);
+
+      const myDecksArr = [];
+      responseData?.decks?.forEach(deck => {
+        userId === deck?.authorId && myDecksArr?.push(deck)
+      })
+      setMyDecks(myDecksArr)
+
+
 		}
     my_deck();
 	}, []);
 
 
-  const renameDeck = async (e) => {
-    e.preventDefault()
-    // setErrors([]);
-
-    const editDeck = {
-      "title": currentTitle,
-      "languageId": currentDeck?.languageId,
-      "authorId": userId
-    }
-
-    const deckData = await fetch(`/api/decks/edit/3`, {
-      method: 'PATCH',
-      body: JSON.stringify(editDeck),
-      headers: {
-            "Content-Type": "application/json"
-          }
-      })
-      const data = await deckData.json()
-
-    return data
-  }
-
-
   return (
     <main id="main-dashboard">
-      <h1>Welcome</h1>
-      <form onSubmit={renameDeck}>
-        <h1>Deck: {currentTitle && currentTitle}</h1>
-        <input
-          className='textInput'
-          type="text"
-          value={currentTitle}
-          onChange={(e) => setCurrentTitle(e.target.value)}
-          placeholder='New Name'
-        />
-        <button>Rename</button>
-      </form>
+      <h1>My Decks</h1>
       <ul>
-        {currentDeck?.cards && currentDeck?.cards?.map(card => (
-          <li>{card?.question}</li>
+        {myDecks && myDecks?.map(deck => (
+          <li>
+            <NavLink to={`/decks/${deck?.id}`}>{deck?.title}</NavLink>
+          </li>
         ))}
       </ul>
     </main>

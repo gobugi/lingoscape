@@ -1,7 +1,6 @@
 .all-decks-container {
   display: flex;
   flex-wrap: wrap;
-
 }
 .all-decks-container>* {
   flex: 1 1 250px;

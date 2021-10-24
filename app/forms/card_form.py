@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 
-class createCardForm(FlaskForm):
+class CardForm(FlaskForm):
     deckId = IntegerField(
         'deckId', validators=[DataRequired()])
     question = StringField(

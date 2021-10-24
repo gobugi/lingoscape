@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import Deck, User, Card, Language, db
 from flask_login import login_required, current_user
 from app.api.auth_routes import validation_errors_to_error_messages
-from app.forms import createCardForm
+from app.forms import CardForm
 
 
 card_routes = Blueprint('cards', __name__)
@@ -14,16 +14,45 @@ def cards():
     return {'cards': [card.to_dict() for card in cards]}
 
 
-# @card_routes.route('/<int:id>/deck')
-# def deck_id_cards(deckId):
-#     deck_id_cards = Card.query.filter_by(deckId=deckId)
-#     return {'deck_id_cards': [card.to_dict() for card in deck_id_cards]}
+
+
+@card_routes.route('/<int:id>')
+def single_card(id):
+    card = Card.query.filter_by(id=id).first()
+    return {'card': [card.to_dict()]}
+
+
+@card_routes.route('/<int:id>', methods=['PATCH'])
+def edit_card(id):
+    form = CardForm()
+
+    updatedCard = Card.query.get(id)
+    updatedCard.question = form.data['question']
+    updatedCard.answer = form.data['answer']
+
+    db.session.commit()
+    return updatedCard.to_dict()
+
+
+
+
+
+@card_routes.route('/delete/<int:id>', methods=['DELETE'])
+def delete_card(id):
+    card = Card.query.get(id)
+
+    db.session.delete(card)
+    db.session.commit()
+    return {'message': ['Successfully Deleted']}
+
+
+
 
 
 @card_routes.route('', methods=['POST'])
 @login_required
 def create_card():
-    cardForm = createCardForm()
+    cardForm = CardForm()
     cardForm['csrf_token'].data = request.cookies['csrf_token']
 
     if cardForm.validate_on_submit():
