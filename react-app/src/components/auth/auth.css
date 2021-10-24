@@ -14,7 +14,7 @@
 #login-container {
   margin: auto;
   margin-top: 10%;
-  width: 400px;
+  width: 350px;
   height: 450px;
   padding: 10px;
   background-color:white;;
@@ -64,11 +64,7 @@
 
 
 
-.pill-button{align-items:center;background-color:#3faee0;border:none;border-radius:36px;box-sizing:border-box;color:#fff;cursor:pointer;display:flex;font-size:16px;font-weight:400;height:36px;justify-content:center;margin:0 18px;outline-style:none;padding:0 28.8px;position:relative;transition:all 0.3s;}
-.pill-button:hover{background-color:#6bc1e7;}
-*,:after,:before{box-sizing:border-box;}
-*,:after,:before{box-sizing:border-box;}
-.pill-button{border-radius:33px;height:60px;margin:0 auto;max-width:186px;padding:0;width:100%;}
+
 
 
 
