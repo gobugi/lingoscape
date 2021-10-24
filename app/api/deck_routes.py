@@ -11,7 +11,7 @@ deck_routes = Blueprint('decks', __name__)
 
 @deck_routes.route('/')
 def decks():
-    decks = Deck.query.all()
+    decks = Deck.query.order_by(Deck.id.desc())
     return {'decks': [deck.to_dict() for deck in decks]}
 
 

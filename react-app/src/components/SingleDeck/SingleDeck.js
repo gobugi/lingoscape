@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./SingleDeck.css";
 
 const SingleDeck = () => {
+
+  const history = useHistory();
 
 	const sessionUser = useSelector((state) => state?.session?.user);
 	const userId = sessionUser?.id;
@@ -74,6 +76,16 @@ const SingleDeck = () => {
 
 
 
+  const deleteDeck = async (e) => {
+    e.preventDefault();
+    await fetch(`/api/decks/delete/${deckId}`, {
+        method: 'DELETE'
+    })
+    history.push("/dashboard");
+};
+
+
+
 
 
   return (
@@ -123,6 +135,11 @@ const SingleDeck = () => {
         ))}
 
       </ul>
+
+      {(currentDeck?.authorId === userId) &&
+        <button onClick={deleteDeck} >Delete Deck</button>
+      }
+
     </main>
   )
 
