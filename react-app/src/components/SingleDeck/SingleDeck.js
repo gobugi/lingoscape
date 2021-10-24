@@ -19,6 +19,7 @@ const SingleDeck = () => {
 	const [currentTitle, setCurrentTitle] = useState([]);
 	const [currentQuestion, setCurrentQuestion] = useState([]);
 	const [currentAnswer, setCurrentAnswer] = useState([]);
+	const [currentCard, setCurrentCard] = useState([]);
 
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const SingleDeck = () => {
       "answer": currentAnswer
     }
 
+
     /////////////////////MAKE THIS CARD ID DYNAMIC///////////////////////////
     const cardData = await fetch(`/api/cards/60`, {
       method: 'PATCH',
@@ -69,7 +71,9 @@ const SingleDeck = () => {
             "Content-Type": "application/json"
           }
       })
-      const data = await cardData.json()
+    const data = await cardData.json()
+
+    history.go(0);
 
     return data
   }
@@ -113,23 +117,22 @@ const SingleDeck = () => {
 
         {(currentDeck?.authorId === userId) && currentDeck?.cards?.map(card => (
           <li>
-            <div>{card?.question}</div>
-
             <form id="edit-card" onSubmit={updateCard}>
               <input
                 className='textInput'
                 type="text"
-                value={currentQuestion}
+                defaultValue={card?.question}
                 onChange={(e) => setCurrentQuestion(e.target.value)}
               />
-              <div>{card?.answer}</div>
+
               <input
                 className='textInput'
                 type="text"
-                value={currentAnswer}
+                defaultValue={card?.answer}
                 onChange={(e) => setCurrentAnswer(e.target.value)}
               />
               <button>Edit</button>
+              {/* <button type="button">Delete</button> */}
             </form>
           </li>
         ))}
@@ -137,7 +140,7 @@ const SingleDeck = () => {
       </ul>
 
       {(currentDeck?.authorId === userId) &&
-        <button onClick={deleteDeck} >Delete Deck</button>
+        <button onClick={deleteDeck}>Delete Deck</button>
       }
 
     </main>
