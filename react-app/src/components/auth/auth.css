@@ -1,0 +1,100 @@
+#login-main {
+  margin-top: 72px;
+  background-image: url("https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2148&q=80");
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  justify-content: space-around;
+  position: fixed;
+  opacity: 0.82;
+}
+
+#login-container {
+  margin: auto;
+  margin-top: 10%;
+  width: 400px;
+  height: 450px;
+  padding: 10px;
+  background-color:white;;
+  text-align: center;
+  border-radius: 25px;
+  opacity: 1 !important;
+}
+
+#login-container>form {
+  text-align: center;
+
+  justify-content: space-around;
+}
+
+#login-container>form>div>input {
+  padding: 4px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 230px;
+}
+
+
+
+#login-container>form>div>input:focus {
+  border-color:rgba(41,165,220,.8);
+  outline:0;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
+}
+
+
+#login-container>form>div>button {
+  padding: 5px;
+  background-color: #FF8A47;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 48px;
+  border-radius:33px;
+  border: none;
+  width: 185px;
+}
+
+
+
+
+
+.pill-button{align-items:center;background-color:#3faee0;border:none;border-radius:36px;box-sizing:border-box;color:#fff;cursor:pointer;display:flex;font-size:16px;font-weight:400;height:36px;justify-content:center;margin:0 18px;outline-style:none;padding:0 28.8px;position:relative;transition:all 0.3s;}
+.pill-button:hover{background-color:#6bc1e7;}
+*,:after,:before{box-sizing:border-box;}
+*,:after,:before{box-sizing:border-box;}
+.pill-button{border-radius:33px;height:60px;margin:0 auto;max-width:186px;padding:0;width:100%;}
+
+
+
+
+
+
+
+#login-container>form>div>button:hover {
+  cursor: pointer;
+  background-color: #FF8243;
+}
+
+#login-btn-div {
+  margin-top: 18px;
+}
+
+
+
+#login-container>form>* {
+  padding: 5px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#login-header {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  color: #29A5DC;
+  margin-bottom: 0.78em;
+}
