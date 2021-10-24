@@ -26,8 +26,6 @@ const Dashboard = () => {
         userId === deck?.authorId && myDecksArr?.push(deck)
       })
       setMyDecks(myDecksArr)
-
-
 		}
     my_deck();
 	}, []);
