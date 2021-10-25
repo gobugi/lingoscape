@@ -110,3 +110,25 @@ background-color: #EEEEEE;
 #make-btn:visited {
   text-decoration: none;
 }
+
+#about-me {
+  bottom: 12%;
+  display: block;
+  text-align: right;
+  float: right;
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  color: #00AADE;
+}
+
+#divider-span {
+  color: white;
+}
+
+.fab {
+  font-size: 2.0rem;
+  color: #FF8243;
+  margin-left: 1px;
+  padding: 3px;
+}
