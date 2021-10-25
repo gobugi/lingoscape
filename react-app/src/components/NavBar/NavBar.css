@@ -6,7 +6,7 @@ body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overfl
   font-family: 'mont';
   font-style: normal;
   font-weight: normal;
-  src: url('./fonts/Mont-Bold.ttf') format('tff');
+  src: url('https://github.com/gobugi/lingoscape/blob/main/react-app/public/fonts/Mont-Bold.woff') format('woff');
   }
 
 button:hover {
