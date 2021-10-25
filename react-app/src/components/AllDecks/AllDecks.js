@@ -76,7 +76,7 @@ const AllDecks = () => {
                   <li className="lang-decks-list">
                     <h5 className="deck-name">
                       <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
-                        {`${deck?.title} `}
+                        {`${deck?.title}`}
                         <i class="fas fa-caret-right"></i>
                       </NavLink>
                     </h5>

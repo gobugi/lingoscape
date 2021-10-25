@@ -9,7 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const Homepage = () => {
 
   const sessionUser = useSelector(state => state?.session?.user);
-  
+
   if (sessionUser) {
     return <Redirect to='/dashboard' />;
   }
@@ -38,6 +38,17 @@ const Homepage = () => {
         </div>
       </Carousel>
 
+      <div id="about-me">
+        <span>{`Johnny Park`}</span>
+        <span id="divider-span">{` | `}</span>
+        <a href="https://www.linkedin.com/in/johnny-park-b81857212" rel="noreferrer" target="_blank">
+          <i className="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/gobugi" target="_blank" rel="noreferrer">
+          <i className="fab fa-github-square"></i>
+        </a>
+      </div>
+
       <div className="message-container">
         <h1>Explore your new language.</h1>
         <h2>{`Flashcards for `}
@@ -52,7 +63,6 @@ const Homepage = () => {
           </NavLink>
         </div>
       </div>
-
 
     </main>
   )
