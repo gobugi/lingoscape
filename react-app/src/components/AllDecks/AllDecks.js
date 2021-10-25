@@ -44,22 +44,51 @@ const AllDecks = () => {
   })
 
   return (
-    <main>
-      <div className="all-decks-container">
-        {newArr && newArr?.map((lang) => (
-          <div className="lang-container">
-            <h2>{lang}</h2>
-            <ul>
-            {decks && decks?.decks?.map((deck) => (
-              currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
-              <li>
-                <NavLink to={`/decks/${deck?.id}`}>{deck?.title}</NavLink>
-              </li>
-            ))}
-            </ul>
+    <main id="all-decks-main">
+
+      <div className="all-decks-content">
+        <div className="all-decks-header">
+          <div className="all-decks-title">
+            <h1 className="all-decks-heading">
+              Discover a Language
+            </h1>
           </div>
-        ))}
+
+          <div className="all-decks-blurb">
+            Browse from thousands of flashcards created by top students, professors, publishers, and experts, spanning the world's vast plethora of languages.
+          </div>
+        </div>
+
+        <div className="all-decks-body">
+          <ul className="all-langs-list">
+            <li className="lang-item" id="list-initial-spacer" />
+
+
+            {newArr && newArr?.map((lang) => (
+              <>
+                <li className="lang-item">
+                  <h4 className="lang-name">
+                    {lang}
+                  </h4>
+                </li>
+                {decks && decks?.decks?.map((deck) => (
+                  currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
+                  <li className="lang-decks-list">
+                    <h5 className="deck-name">
+                      <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
+                        {`${deck?.title} `}
+                        <i class="fas fa-caret-right"></i>
+                      </NavLink>
+                    </h5>
+                  </li>
+                ))}
+              </>
+            ))}
+
+          </ul>
+        </div>
       </div>
+
     </main>
   )
 }
