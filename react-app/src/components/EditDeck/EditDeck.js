@@ -20,6 +20,7 @@ const EditDeck = () => {
 	const [currentQuestion, setCurrentQuestion] = useState([]);
 	const [currentAnswer, setCurrentAnswer] = useState([]);
 	const [currentCard, setCurrentCard] = useState([]);
+	const [currentCardId, setCurrentCardId] = useState([]);
 
 
   useEffect(() => {
@@ -56,27 +57,16 @@ const EditDeck = () => {
   }
 
 
-
+///////////////////////////////////////////////////////////////////////////////
   const updateCard = async (e) => {
     e.preventDefault()
 
-    if (!currentQuestion) {
-      setCurrentQuestion(currentCard?.question)
-    }
-
-    if (!currentAnswer) {
-      setCurrentAnswer(currentCard?.answer)
-    }
-
-
-    const editCard = {
-
+    const editCard =
+    {
       "question": currentQuestion,
       "answer": currentAnswer
     }
 
-
-    /////////////////////MAKE THIS CARD ID DYNAMIC///////////////////////////
     const cardData = await fetch(`/api/cards/${currentCard?.id}`, {
       method: 'PATCH',
       body: JSON.stringify(editCard),
@@ -86,11 +76,13 @@ const EditDeck = () => {
       })
     const data = await cardData.json()
 
+
     history.go(0);
 
     return data
   }
 
+///////////////////////////////////////////////////////////////////////
 
 
   const deleteDeck = async (e) => {
@@ -101,6 +93,13 @@ const EditDeck = () => {
     history.push("/dashboard");
 };
 
+const deleteCard = (id) => async (e) => {
+  e.preventDefault();
+  await fetch(`/api/cards/delete/${id}`, {
+      method: 'DELETE'
+  })
+  history.go(0);
+};
 
 const myCards = currentDeck?.cards;
 
@@ -129,27 +128,8 @@ const addCard = async (e) => {
 
   const data = await response.json();
 
-  // const cardsUL = document.getElementById("createdCardsList");
-  // const cardsLi = document.createElement("li");
-  // const cardsSpan1 = document.createElement("span");
-  // const cardsSpan2 = document.createElement("span");
-
-  // cardsUL.appendChild(cardsLi);
-
-  // cardsLi.appendChild(cardsSpan1);
-  // cardsLi.appendChild(cardsSpan2);
-
-  // cardsSpan1.innerHTML = question;
-  // cardsSpan2.innerHTML = answer;
-
-  // const cardsTextInput = document.getElementsByClassName("cardInput");
-  // cardsTextInput.value = '';
-  // cardsTextInput.placeholder = '';
-
   setCurrentQuestion('');
   setCurrentAnswer('')
-
-  // document.getElementById("done-btn").style.display="block";
 
   history.go(0);
 
@@ -185,18 +165,20 @@ const addCard = async (e) => {
               <input
                 className='textInput'
                 type="text"
-                defaultValue={card?.question}
+                defaultValue=""
+                placeholder={card?.question}
                 onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(e.target.value) )}
               />
 
               <input
                 className='textInput'
                 type="text"
-                defaultValue={card?.answer}
+                defaultValue=""
+                placeholder={card?.answer}
                 onChange={(e) => ( setCurrentCard(card), setCurrentAnswer(e.target.value) )}
               />
-              <button>Edit</button>
-              {/* <button type="button">Delete</button> */}
+              <button type="submit">Edit</button>
+              <button type="button" onClick={deleteCard(card?.id)}>Delete</button>
             </form>
           </li>
         ))}
