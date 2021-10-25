@@ -59,7 +59,7 @@ const CreateDeck = () => {
   }
 
   if (deckId) {
-    return <Redirect to={`/decks/${deckId}`} />;
+    return <Redirect to={`/decks/edit${deckId}`} />;
   }
 
 
