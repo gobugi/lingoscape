@@ -1,16 +1,12 @@
 body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overflow-x: hidden;}
 
-
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
-
-
 
 @font-face {
   font-family: 'mont';
   font-style: normal;
   font-weight: normal;
-  src: local('mont-bold'), url('Mont-Bold.ttf') format('tff');
+  src: local('mont-bold'), url('./Mont-Bold.ttf') format('tff');
   }
 
 main {
@@ -65,8 +61,9 @@ nav {
 }
 
 #nav-lingoscape {
-  font-family: mont;
+  font-family: 'mont';
   font-size: 18px;
+  font-weight: 900;
   color: #4B4040;
   margin-bottom: 0.78em;
 }
