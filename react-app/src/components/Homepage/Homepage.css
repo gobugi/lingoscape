@@ -1,10 +1,10 @@
+
 @font-face {
   font-family: 'mont';
   font-style: normal;
   font-weight: normal;
-  src: local('mont-bold'), url('https://github.com/gobugi/lingoscape/blob/main/react-app/src/components/NavBar/Mont-Bold.ttf') format('tff');
+  src: url('./fonts/Mont-Bold.ttf') format('tff');
   }
-
 
 #home-main {
   margin-top: 72px;
