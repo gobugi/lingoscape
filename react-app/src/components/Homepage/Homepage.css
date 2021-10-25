@@ -3,7 +3,7 @@
   font-family: 'mont';
   font-style: normal;
   font-weight: normal;
-  src: url('./fonts/Mont-Bold.ttf') format('tff');
+  src: url('fonts/Mont-Bold.ttf') format('tff');
   }
 
 #home-main {
