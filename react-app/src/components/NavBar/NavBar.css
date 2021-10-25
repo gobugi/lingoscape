@@ -6,7 +6,7 @@ body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overfl
   font-family: 'mont';
   font-style: normal;
   font-weight: normal;
-  src: local('mont-bold'), url('./Mont-Bold.ttf') format('tff');
+  src: local('mont-bold'), url('https://github.com/gobugi/lingoscape/blob/main/react-app/src/components/NavBar/Mont-Bold.ttf') format('tff');
   }
 
 button:hover {
@@ -17,6 +17,7 @@ main {
   margin-top: 72px;
   width: 100%;
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 
