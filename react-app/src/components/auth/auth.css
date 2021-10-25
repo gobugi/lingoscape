@@ -73,7 +73,6 @@
 
 
 #login-container>form>div>button:hover {
-  cursor: pointer;
   background-color: #FF8243;
 }
 

@@ -9,6 +9,10 @@ body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overfl
   src: local('mont-bold'), url('./Mont-Bold.ttf') format('tff');
   }
 
+button:hover {
+  cursor: pointer;
+}
+
 main {
   margin-top: 72px;
   width: 100%;
@@ -266,8 +270,4 @@ nav {
 .profile-dropdown>* {
 
   text-align: right;
-}
-
-#logout-btn:hover {
-  cursor: pointer;
 }

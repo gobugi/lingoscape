@@ -13,6 +13,7 @@ import CreateDeck from './components/CreateDeck/CreateDeck';
 import AllDecks from './components/AllDecks/AllDecks';
 import Dashboard from './components/Dashboard/Dashboard';
 import SingleDeck from './components/SingleDeck/SingleDeck';
+import EditDeck from './components/EditDeck/EditDeck';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <ProtectedRoute path='/decks/new' exact={true} >
             <CreateDeck />
+          </ProtectedRoute>
+          <ProtectedRoute path='/decks/edit/:deckId' exact={true} >
+            <EditDeck />
           </ProtectedRoute>
 					<Route path="/decks/:deckId" exact={true}>
 						<SingleDeck />
