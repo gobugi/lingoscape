@@ -100,12 +100,18 @@ const SingleDeck = () => {
 };
 
 
+const myCards = currentDeck?.cards;
+
+const myOrderedCards = myCards?.sort(function(a, b) {
+  return a?.id - b?.id;
+});
+
 
   return (
     <main id="main-dashboard">
       <h2>{currentTitle && currentTitle}</h2>
 
-      {currentDeck && currentDeck?.cards?.map(card => (
+      {currentDeck && myOrderedCards?.map(card => (
           <li>
             <div>{card?.question}</div>
             <div>{card?.answer}</div>
