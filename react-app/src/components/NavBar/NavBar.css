@@ -1,4 +1,4 @@
-body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overflow-x: hidden;}
+body { margin: 0; padding: 0; background-color: #f2f2f2;; max-width: 100%; overflow-x: hidden;}
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
@@ -17,6 +17,7 @@ main {
   width: 100%;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
+  z-index: -1;
 }
 
 
@@ -242,7 +243,7 @@ nav {
 
 .fa-user-circle {
   font-size: 2.1rem;
-  color: #4B4040;
+  color: #3faee0;
   max-width:100%;
   background-color: white;
   border-radius: 50%;

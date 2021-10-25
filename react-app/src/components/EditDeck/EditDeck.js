@@ -50,6 +50,8 @@ const EditDeck = () => {
       })
       const data = await deckData.json()
 
+      history.go(0);
+
     return data
   }
 
@@ -157,7 +159,7 @@ const addCard = async (e) => {
 
   return (
     <main id="main-dashboard">
-      <h2>{currentTitle && currentTitle}</h2>
+      <h2>{currentDeck && currentDeck?.title}</h2>
       { currentDeck?.authorId === userId && <form id="edit-title" onSubmit={renameDeck}>
         <input
           className='textInput'

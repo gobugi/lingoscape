@@ -1,7 +1,129 @@
-.all-decks-container {
-  display: flex;
-  flex-wrap: wrap;
+
+@font-face {
+  font-family: 'Proxima Nova';
+  font-weight: 300;
+  font-style: normal;
+  src: url('Proxima-Nova-Light.woff') format('woff'),
+       url('Proxima-Nova-Light.ttf') format('truetype');
+  }
+
+@font-face {
+  font-family: 'Proxima Nova';
+  font-weight: 700;
+  font-style: normal;
+  src: url('Proxima-Nova-Bold.woff') format('woff'),
+       url('Proxima-Nova-Bold.ttf') format('truetype');
+  }
+
+.fa-caret-right {
+  font-size: 1.1rem;
+  color: #00AADE !important;
+  margin-left: 1px;
 }
-.all-decks-container>* {
-  flex: 1 1 250px;
+
+#all-decks-main {
+  margin-top: 0;
+}
+
+
+.all-decks-content {
+  padding: 130px 4% 42px;
+}
+
+
+.all-decks-header {
+  position: relative;
+  margin-bottom: 24px;
+  z-index: -1;
+}
+
+
+.all-decks-title {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+
+.all-decks-heading {
+  margin: 0;
+  color: #444444;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+
+.all-decks-blurb {
+  margin: 0 0 30px;
+  color: #555555;
+  font-size: 17px;
+  font-weight: 300;
+}
+
+
+.all-decks-body {
+  padding: 0 2px;
+}
+
+
+.all-langs-list {
+  -moz-column-count: 3;
+  column-count: 3;
+  grid-column-gap: 40px;
+  -moz-column-gap: 40px;
+  column-gap: 40px;
+  padding: 0;
+  list-style: disc;
+  line-height: normal;
+  color: #333333;
+}
+#list-initial-spacer {
+  height: 0;
+  margin-top: -18px;
+}
+
+.lang-item {
+  list-style: outside none none;
+  margin-left: 0;
+  margin-top: 18px;
+}
+
+.lang-decks-list {
+  margin-bottom: 0;
+  margin-left: 18px;
+  font-size:13px;
+  color: #333333;
+}
+
+.deck-name {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 150%;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+
+.lang-name {
+  font-family: 'Proxima Nova', sans-serif;
+  font-size:17px;
+  font-weight: 700;
+  margin-bottom:5px;
+  margin-top:18px;
+  color: #6A6A6A;
+}
+
+
+.deck-link {
+  color:#3faee0;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+
+.deck-link:hover {
+  text-decoration: underline;
 }
