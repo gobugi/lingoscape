@@ -4,7 +4,8 @@ body { margin: 0; padding: 0; background-color: #EAF2F6; max-width: 100%; overfl
 
 @font-face {
   font-family: 'mont';
-  src: url('Mont-Bold.woff') format('woff');
+  src: url('Mont-Bold.woff') format('woff'),
+       url('Mont-Bold.ttf') format('truetype');
   }
 
 button:hover {
