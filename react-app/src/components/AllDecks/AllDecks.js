@@ -48,7 +48,7 @@ const AllDecks = () => {
       <div className="all-decks-container">
         {newArr && newArr?.map((lang) => (
           <div className="lang-container">
-            <h1>{lang}</h1>
+            <h2>{lang}</h2>
             <ul>
             {decks && decks?.decks?.map((deck) => (
               currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
