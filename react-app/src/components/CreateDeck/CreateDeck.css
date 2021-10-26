@@ -1,3 +1,8 @@
 .langSelect {
-  width: 177px;
+  width: 170px;
+}
+
+#main-new-deck {
+  margin-top: 142px;
+  text-align: center;
 }

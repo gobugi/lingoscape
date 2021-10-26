@@ -34,100 +34,47 @@ const SingleDeck = () => {
 
 
 
-  const renameDeck = async (e) => {
-    e.preventDefault()
-
-    const editDeck = {
-      "title": currentTitle
-    }
-
-    const deckData = await fetch(`/api/decks/${deckId}`, {
-      method: 'PATCH',
-      body: JSON.stringify(editDeck),
-      headers: {
-            "Content-Type": "application/json"
-          }
-      })
-      const data = await deckData.json()
-
-    return data
-  }
-
-
-
-  const updateCard = async (e) => {
-    e.preventDefault()
-
-    if (!currentQuestion) {
-      setCurrentQuestion(currentCard?.question)
-    }
-
-    if (!currentAnswer) {
-      setCurrentAnswer(currentCard?.answer)
-    }
-
-
-    const editCard = {
-
-      "question": currentQuestion,
-      "answer": currentAnswer
-    }
-
-
-    /////////////////////MAKE THIS CARD ID DYNAMIC///////////////////////////
-    const cardData = await fetch(`/api/cards/${currentCard?.id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(editCard),
-      headers: {
-            "Content-Type": "application/json"
-          }
-      })
-    const data = await cardData.json()
-
-    history.go(0);
-
-    return data
-  }
-
-
-
   const deleteDeck = async (e) => {
     e.preventDefault();
     await fetch(`/api/decks/delete/${deckId}`, {
         method: 'DELETE'
     })
     history.push("/dashboard");
-};
+  };
 
 
-const myCards = currentDeck?.cards;
+  const myCards = currentDeck?.cards;
 
-const myOrderedCards = myCards?.sort(function(a, b) {
-  return a?.id - b?.id;
-});
+  const myOrderedCards = myCards?.sort(function(a, b) {
+    return a?.id - b?.id;
+  });
 
 
   return (
-    <main id="main-dashboard">
-      <h2>{currentTitle && currentTitle}</h2>
+    <main id="main-deck">
+      <div>
+        <h2>{currentTitle && currentTitle}</h2>
 
-      {currentDeck && myOrderedCards?.map(card => (
-          <li>
-            <div>{card?.question}</div>
-            <div>{card?.answer}</div>
-          </li>
+        {currentDeck && myOrderedCards?.map(card => (
+          <div>
+            <div>
+              <span id="span-left">{card?.question}</span>
+              <span id="span-center">{` | `}</span>
+              <span id="span-right">{card?.answer}</span>
+            </div>
+          </div>
         ))}
 
-      {(currentDeck?.authorId === userId) &&
-      <div>
-        <NavLink to={`/decks/edit/${deckId}`}>
-          <button>Edit</button>
-        </NavLink>
+        {(currentDeck?.authorId === userId) &&
+        <div>
+          <NavLink to={`/decks/edit/${deckId}`}>
+            <button>Edit</button>
+          </NavLink>
 
-        <button onClick={deleteDeck}>Delete</button>
+          <button onClick={deleteDeck}>Delete</button>
+        </div>
+        }
       </div>
-      }
-
     </main>
   )
 

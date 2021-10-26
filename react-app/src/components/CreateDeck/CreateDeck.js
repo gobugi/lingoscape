@@ -112,10 +112,7 @@ const CreateDeck = () => {
 // console.log(deckCards && deckCards)
 
   return (
-    <main>
-      {/* <div id="createdTitle" style={{visibility:"hidden"}}>
-        <h1>{title}</h1>
-      </div> */}
+    <main id="main-new-deck">
 
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
         <div className='createDeck'>
