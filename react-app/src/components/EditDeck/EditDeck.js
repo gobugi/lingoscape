@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
+import { NavLink, useLocation, useHistory, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./EditDeck.css";
+
 
 const EditDeck = () => {
 
@@ -20,7 +21,7 @@ const EditDeck = () => {
 	const [currentQuestion, setCurrentQuestion] = useState([]);
 	const [currentAnswer, setCurrentAnswer] = useState([]);
 	const [currentCard, setCurrentCard] = useState([]);
-	const [currentCardId, setCurrentCardId] = useState([]);
+
 
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const EditDeck = () => {
 	}, []);
 
 
+  //////////////////////////////////////////////////////////////
 
   const renameDeck = async (e) => {
     e.preventDefault()
@@ -51,20 +53,30 @@ const EditDeck = () => {
       })
       const data = await deckData.json()
 
-      history.go(0);
+      setCurrentDeck({...data})
 
-    return data
+      document.getElementById("edit-title").style.display="none";
+      document.getElementById("revealTitleBtn").style.display="block";
+
+    return currentDeck
   }
 
+  const revealTitleForm = async (e) => {
+    e.preventDefault()
+
+    document.getElementById("edit-title").style.display="block";
+    document.getElementById("revealTitleBtn").style.display="none";
+  }
 
 ///////////////////////////////////////////////////////////////////////////////
+
   const updateCard = async (e) => {
     e.preventDefault()
 
     const editCard =
     {
       "question": currentQuestion,
-      "answer": currentAnswer
+      "answer": currentAnswer,
     }
 
     const cardData = await fetch(`/api/cards/${currentCard?.id}`, {
@@ -76,21 +88,25 @@ const EditDeck = () => {
       })
     const data = await cardData.json()
 
+    setCurrentCard({});
+    setCurrentQuestion('');
+    setCurrentAnswer('');
 
-    history.go(0);
+    // history.go(0);
 
     return data
   }
 
+
 ///////////////////////////////////////////////////////////////////////
 
 
-  const deleteDeck = async (e) => {
-    e.preventDefault();
-    await fetch(`/api/decks/delete/${deckId}`, {
-        method: 'DELETE'
-    })
-    history.push("/dashboard");
+const deleteDeck = async (e) => {
+  e.preventDefault();
+  await fetch(`/api/decks/delete/${deckId}`, {
+      method: 'DELETE'
+  })
+  history.push("/dashboard");
 };
 
 const deleteCard = (id) => async (e) => {
@@ -98,7 +114,13 @@ const deleteCard = (id) => async (e) => {
   await fetch(`/api/cards/delete/${id}`, {
       method: 'DELETE'
   })
-  history.go(0);
+
+  setCurrentCard({});
+  setCurrentQuestion('');
+  setCurrentAnswer('');
+
+    history.go(0);
+
 };
 
 const myCards = currentDeck?.cards;
@@ -110,6 +132,7 @@ const myOrderedCards = myCards?.sort(function(a, b) {
 
 const addCard = async (e) => {
   e.preventDefault()
+
 
   const newCard = {
     deckId,
@@ -128,101 +151,99 @@ const addCard = async (e) => {
 
   const data = await response.json();
 
+  setCurrentCard({});
   setCurrentQuestion('');
-  setCurrentAnswer('')
+  setCurrentAnswer('');
 
-  history.go(0);
+  history.go(0)
 
   return data
 }
 
 
   return (
-    <main id="main-dashboard">
-      <h2>{currentDeck && currentDeck?.title}</h2>
-      { currentDeck?.authorId === userId && <form id="edit-title" onSubmit={renameDeck}>
-        <input
-          className='textInput'
-          type="text"
-          value={currentTitle}
-          onChange={(e) => setCurrentTitle(e.target.value)}
-          placeholder='New Name'
-        />
-        <button>Rename</button>
-      </form> }
-      <ul>
+    <main id="main-decks-edit">
+      <div>
 
-        {(currentDeck?.authorId !== userId) && currentDeck?.cards?.map(card => (
+        <h2>{currentDeck && currentDeck?.title}</h2>
+        { currentDeck?.authorId === userId &&
+        <form id="edit-title" onSubmit={renameDeck} style={{display:"none"}}>
+          <input
+            className='textInput'
+            type="text"
+            defaultValue={currentTitle}
+            onChange={(e) => setCurrentTitle(e.target.value)}
+          />
+          <button>Rename</button>
+        </form> }
+        <button id="revealTitleBtn" style={{display:"block"}} onClick={revealTitleForm}>Rename</button>
+
+
+        <ul>
+
+          {(currentDeck?.authorId === userId) && myOrderedCards?.map(card => (
+            <li>
+              <form onSubmit={updateCard}>
+                <input
+                  id={`card-question-${card?.id}`}
+                  className='textInput'
+                  type="text"
+                  defaultValue={card?.question}
+                  placeholder={card?.question}
+                  onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(document.getElementById(`card-question-${card?.id}`).value), setCurrentAnswer(document.getElementById(`card-answer-${card?.id}`).value) )}
+                />
+                <input
+                  id={`card-answer-${card?.id}`}
+                  className='textInput'
+                  type="text"
+                  defaultValue={card?.answer}
+                  placeholder={card?.answer}
+                  onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(document.getElementById(`card-question-${card?.id}`).value), setCurrentAnswer(document.getElementById(`card-answer-${card?.id}`).value) )}
+                />
+                <button>Save</button>
+                <button type="button" onClick={deleteCard(card?.id)}>Delete</button>
+              </form>
+            </li>
+          ))}
+
+        </ul>
+
+        {(currentDeck?.authorId === userId) &&
+        <ul>
           <li>
-            <div>{card?.question}</div>
-            <div>{card?.answer}</div>
-          </li>
-        ))}
-
-        {(currentDeck?.authorId === userId) && myOrderedCards?.map(card => (
-          <li>
-            <form id="edit-card" onSubmit={updateCard}>
-              <input
-                className='textInput'
-                type="text"
-                defaultValue=""
-                placeholder={card?.question}
-                onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(e.target.value) )}
-              />
-
-              <input
-                className='textInput'
-                type="text"
-                defaultValue=""
-                placeholder={card?.answer}
-                onChange={(e) => ( setCurrentCard(card), setCurrentAnswer(e.target.value) )}
-              />
-              <button type="submit">Edit</button>
-              <button type="button" onClick={deleteCard(card?.id)}>Delete</button>
+            <form id="addCardForm" onSubmit={addCard} >
+              <span className='createCard'>
+                <input
+                  className='textInput cardInput'
+                  type="text"
+                  onChange={(e) => setCurrentQuestion(e.target.value)}
+                  placeholder='Ex: Bonjour'
+                />
+              </span>
+              <span className='createCard'>
+                <input
+                  className='textInput cardInput'
+                  type="text"
+                  onChange={(e) => setCurrentAnswer(e.target.value)}
+                  placeholder='Ex: Hello'
+                />
+              </span>
+              <button className='create-card-btn'>Add Card</button>
             </form>
           </li>
-        ))}
+        </ul>
+        }
 
-      </ul>
+        {(currentDeck?.authorId === userId) &&
+          <div>
+            <button onClick={deleteDeck}>Delete Deck</button>
+            <NavLink to={`/decks/${deckId}`}>
+              <button>Done</button>
+            </NavLink>
+          </div>
+        }
+      </div>
 
-      {(currentDeck?.authorId === userId) &&
-      <ul>
-        <li>
-          <form id="addCardForm" onSubmit={addCard} >
-            <div className='createCard'>
-              {/* <label className='createCardQuestion'>{langArr[languageId - 1]}: </label> */}
-              <input
-                className='textInput cardInput'
-                type="text"
-                // value=""
-                onChange={(e) => setCurrentQuestion(e.target.value)}
-                placeholder='Ex: Bonjour'
-              />
-            </div>
-            <div className='createCard'>
-              {/* <label className='createCardAnswer'>English: </label> */}
-              <input
-                className='textInput cardInput'
-                type="text"
-                // value=""
-                onChange={(e) => setCurrentAnswer(e.target.value)}
-                placeholder='Ex: Hello'
-              />
-            </div>
-            <button className='create-card-btn'>Add Card</button>
-          </form>
-        </li>
-      </ul>
-      }
-
-      {(currentDeck?.authorId === userId) &&
-        <div>
-          <button onClick={deleteDeck}>Delete Deck</button>
-          <NavLink to={`/decks/${deckId}`}>
-            <button>Done</button>
-          </NavLink>
-        </div>
-      }
 
     </main>
   )

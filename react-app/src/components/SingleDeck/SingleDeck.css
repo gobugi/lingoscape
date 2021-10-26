@@ -1,3 +1,27 @@
-#addCardForm {
-  display: flex;
+#main-deck {
+  margin-top: 142px;
+}
+
+#main-deck>h2 {
+  text-align: center;
+}
+
+#main-deck>div {
+  text-align: center;
+}
+
+#main-deck>div>div {
+  justify-content: space-between;
+}
+
+#span-left {
+  text-align: right;
+}
+
+#span-right {
+  text-align: left;
+}
+
+#span-center {
+  text-align: center;
 }
