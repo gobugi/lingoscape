@@ -32,7 +32,7 @@ const EditDeck = () => {
       setCurrentTitle(responseData?.deck[0]?.title)
 		}
     my_deck();
-	}, []);
+	}, [currentCard, currentAnswer, currentQuestion, currentTitle]);
 
 
   //////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ const addCard = async (e) => {
   setCurrentQuestion('');
   setCurrentAnswer('');
 
-  history.go(0)
+  // history.go(0)
 
   return data
 }
