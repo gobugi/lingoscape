@@ -32,7 +32,7 @@
   display: block;
   text-align: center;
   float: right;
-  position: absolute;
+  position: sticky;
   z-index: 2;
   right: 5%;
   color: #00AADE;
