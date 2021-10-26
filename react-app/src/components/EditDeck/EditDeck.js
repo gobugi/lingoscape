@@ -217,7 +217,7 @@ const addCard = async (e) => {
                   className='textInput cardInput'
                   type="text"
                   onChange={(e) => setCurrentQuestion(e.target.value)}
-                  placeholder='Ex: Bonjour'
+                  placeholder='Ex: Hello'
                 />
               </span>
               <span className='createCard'>
@@ -225,7 +225,7 @@ const addCard = async (e) => {
                   className='textInput cardInput'
                   type="text"
                   onChange={(e) => setCurrentAnswer(e.target.value)}
-                  placeholder='Ex: Hello'
+                  placeholder='Ex: 안녕하세요'
                 />
               </span>
               <button className='create-card-btn'>Add Card</button>

@@ -1,0 +1,16 @@
+#main-study {
+  margin-top: 50vh;
+  font-size: 80px;
+}
+
+#main-study>div {
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+}
+
+.control-arrow {
+  z-index: 2;
+  font-size: 300px;
+}

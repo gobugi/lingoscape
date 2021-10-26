@@ -25,3 +25,48 @@
 #span-center {
   text-align: center;
 }
+
+
+#study-btn {
+  bottom: 12%;
+  display: block;
+  text-align: center;
+  float: right;
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  color: #00AADE;
+  padding: 5px;
+  background-color: #FF8243;
+  font-size: 18px;
+  font-weight: 700;
+  height: 48px;
+  border-radius:80px;
+  border: none;
+  width: 135px;
+  opacity: 0.70;
+  text-decoration: none;
+}
+
+#study-btn:hover {
+  cursor: pointer;
+  opacity: 0.90;
+}
+
+#study-btn>div {
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+}
+
+#divider-span {
+  color: white;
+}
+
+.fa-book-reader {
+  font-size: 1.3rem;
+  color: #4B4040;
+  margin-left: 1px;
+  padding: 3px;
+}
