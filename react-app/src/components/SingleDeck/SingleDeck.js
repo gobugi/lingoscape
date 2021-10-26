@@ -75,6 +75,13 @@ const SingleDeck = () => {
         </div>
         }
       </div>
+      <NavLink id="study-btn" to={`/decks/study/${deckId}`}>
+        <div>
+          <span>Start</span>
+          <span id="divider-span">{` | `}</span>
+          <i class="fas fa-book-reader"></i>
+        </div>
+      </NavLink>
     </main>
   )
 
