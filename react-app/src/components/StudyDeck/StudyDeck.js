@@ -38,16 +38,22 @@ const StudyDeck = () => {
   return (
     <main id="main-study">
 
-      <Carousel id="study-slider" infiniteLoop={false} autoPlay={false} showThumbs={false} showArrows={true} showIndicators={false} showStatus={false} emulateTouch={true}>
+      <Carousel id="study-slider" infiniteLoop={false} autoPlay={false} showThumbs={false} showArrows={true} showIndicators={false} showStatus={false} emulateTouch={false} useKeyboardArrows={true}>
 
         {currentDeck && currentDeck?.map(card => (
-          <div>
-            {card}
+          <div className="study-div">
+            <div>{card}</div>
           </div>
         ))
         }
 
       </Carousel>
+
+      <NavLink id="done-btn" to={`/decks/${deckId}`}>
+        <div>
+          <span>Done</span>
+        </div>
+      </NavLink>
 
     </main>
   )

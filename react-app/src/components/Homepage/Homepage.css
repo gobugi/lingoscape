@@ -3,6 +3,7 @@
   margin-top: 72px;
   width: 100%;
   position: fixed;
+  min-width: 970px;
 }
 
 
