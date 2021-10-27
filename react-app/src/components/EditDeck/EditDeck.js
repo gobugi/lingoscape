@@ -32,7 +32,7 @@ const EditDeck = () => {
       setCurrentTitle(responseData?.deck[0]?.title)
 		}
     my_deck();
-	}, [currentCard, currentAnswer, currentQuestion, currentTitle]);
+	}, [currentCard, currentAnswer, currentQuestion]);
 
 
   //////////////////////////////////////////////////////////////
@@ -92,8 +92,6 @@ const EditDeck = () => {
     setCurrentQuestion('');
     setCurrentAnswer('');
 
-    // history.go(0);
-
     return data
   }
 
@@ -118,8 +116,6 @@ const deleteCard = (id) => async (e) => {
   setCurrentCard({});
   setCurrentQuestion('');
   setCurrentAnswer('');
-
-    history.go(0);
 
 };
 
@@ -147,6 +143,7 @@ const addCard = async (e) => {
     headers: {
       "Content-Type": "application/json"
     }
+
   });
 
   const data = await response.json();
@@ -155,9 +152,12 @@ const addCard = async (e) => {
   setCurrentQuestion('');
   setCurrentAnswer('');
 
-  // history.go(0)
-
   return data
+}
+
+const clearAddCard = async (e) => {
+  document.getElementById("add-question").value='';
+  document.getElementById("add-answer").value='';
 }
 
 
@@ -214,21 +214,25 @@ const addCard = async (e) => {
             <form id="addCardForm" onSubmit={addCard} >
               <span className='createCard'>
                 <input
+                  id="add-question"
                   className='textInput cardInput'
                   type="text"
+                  defaultValue=""
                   onChange={(e) => setCurrentQuestion(e.target.value)}
                   placeholder='Ex: Hello'
                 />
               </span>
               <span className='createCard'>
                 <input
+                  id="add-answer"
                   className='textInput cardInput'
                   type="text"
+                  defaultValue=""
                   onChange={(e) => setCurrentAnswer(e.target.value)}
                   placeholder='Ex: 안녕하세요'
                 />
               </span>
-              <button className='create-card-btn'>Add Card</button>
+              <button className='create-card-btn' onClick={clearAddCard}>Add Card</button>
             </form>
           </li>
         </ul>
