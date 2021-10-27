@@ -1,4 +1,4 @@
-body { margin: 0; padding: 0; background-color: #f2f2f2;; max-width: 100%; overflow-x: hidden;}
+body { margin: 0; padding: 0; background-color: #f2f2f2; max-width: 100%; overflow-x: hidden;}
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
@@ -16,7 +16,11 @@ input {
   font-family: 'Open Sans', sans-serif;
   width: 360px;
   font-size: 16px;
-  /* padding: 4px; */
+}
+
+select {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 button:hover {
@@ -29,7 +33,7 @@ main {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   z-index: -1;
-  min-width: 970px;
+  padding-bottom: 40px;
 }
 
 

@@ -1,16 +1,52 @@
 #main-study {
-  margin-top: 50vh;
+  /* margin-top: 50vh; */
   font-size: 80px;
 }
 
-#main-study>div {
-  height: auto;
-  margin: 0 auto;
-  padding: 10px;
-  position: relative;
+.study-div {
+  display:flex;
+  height: 100vh;
+}
+
+.study-div>div {
+  margin:auto;
 }
 
 .control-arrow {
   z-index: 2;
-  /* size: 300px; */
+  width: 15%;
+}
+
+
+#done-btn {
+  bottom: 8%;
+  display: block;
+  text-align: center;
+  /* float: left; */
+  position: sticky;
+  z-index: 2;
+  left: 47%;
+  color: white;
+  padding: 5px;
+  background-color: #FF8243;
+  font-size: 18px;
+  font-weight: 700;
+  height: 48px;
+  border-radius:80px;
+  border: none;
+  width: 135px;
+  opacity: 0.70;
+  text-decoration: none;
+}
+
+#done-btn:hover {
+  cursor: pointer;
+  opacity: 0.90;
+}
+
+#done-btn>div {
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
 }
