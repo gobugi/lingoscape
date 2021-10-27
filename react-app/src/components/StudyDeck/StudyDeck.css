@@ -1,6 +1,8 @@
 #main-study {
-  /* margin-top: 50vh; */
+  padding-bottom: 0 !important;
   font-size: 80px;
+  margin-top: -72px !important;
+
 }
 
 .study-div {
