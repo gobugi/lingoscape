@@ -1,5 +1,6 @@
 #main-deck {
   margin-top: 142px;
+  text-align: center;
 }
 
 #main-deck>h2 {
@@ -70,3 +71,23 @@
   margin-left: 1px;
   padding: 3px;
 }
+
+#main-deck>div>ul {
+  list-style-type: none;
+  margin-left: -375px;
+}
+
+#main-deck>div>h2 {
+  padding-bottom: 40px;
+  padding-top: 0;
+}
+
+#main-deck>div>div>button {
+  margin-left: -70px;
+  margin-right: 590px;
+  margin-top: 20px;
+}
+
+/* #main-deck>div>div>NavLink {
+
+} */
