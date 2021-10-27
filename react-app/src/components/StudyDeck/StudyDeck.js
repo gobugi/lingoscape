@@ -24,7 +24,11 @@ const StudyDeck = () => {
 
       const cardsArr = responseData?.deck[0]?.cards
 
-      cardsArr.forEach(card => {
+      const orderedCardsArr = cardsArr?.sort(function(a, b) {
+        return a?.id - b?.id;
+      });
+
+      orderedCardsArr.forEach(card => {
         newCardsArr?.push(card?.question);
         newCardsArr?.push(card?.answer);
       })
