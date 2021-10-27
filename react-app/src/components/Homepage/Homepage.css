@@ -113,13 +113,11 @@ background-color: #EEEEEE;
 
 #about-me {
   bottom: 12%;
-  display: block;
-  text-align: right;
-  float: right;
   position: absolute;
   z-index: 2;
-  right: 5%;
+  left: calc(100% - 220px);
   color: #00AADE;
+  width: 970px;
 }
 
 #divider-span {
