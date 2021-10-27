@@ -55,23 +55,29 @@ const SingleDeck = () => {
       <div>
         <h2>{currentTitle && currentTitle}</h2>
 
+        <ul>
         {currentDeck && myOrderedCards?.map(card => (
-          <div>
-            <div>
-              <span id="span-left">{card?.question}</span>
-              <span id="span-center">{` | `}</span>
-              <span id="span-right">{card?.answer}</span>
+          <li>
+            <div className="card-display">
+              <div className="QAdiv">
+                <span>{card?.question}</span>
+              </div>
+              <div className="QAdiv">
+                <span>
+                  {card?.answer}
+                </span>
+              </div>
             </div>
-          </div>
+          </li>
         ))}
-
+        </ul>
         {(currentDeck?.authorId === userId) &&
         <div>
+          <button onClick={deleteDeck}>Delete Deck</button>
+
           <NavLink to={`/decks/edit/${deckId}`}>
             <button>Edit</button>
           </NavLink>
-
-          <button onClick={deleteDeck}>Delete</button>
         </div>
         }
       </div>
