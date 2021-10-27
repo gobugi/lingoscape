@@ -1,17 +1,19 @@
 #addCardForm {
-  /* margin: auto; */
   margin-left: -30px !important;
 }
+
 
 #main-decks-edit {
   text-align: center;
   margin-top: 142px;
+  min-width: 1390px;
 }
 
 
 #main-decks-edit>div {
   text-align: center;
 }
+
 
 #main-decks-edit>div>ul {
   list-style-type: none;
@@ -20,4 +22,33 @@
 #revealTitleBtn {
   text-align: center;
   margin: auto;
+}
+
+
+.card-display {
+  margin-left: 238px;
+}
+
+.card-display>div {
+  display: inline-block;
+  width: 350px;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.QAdiv {
+  border-bottom: solid;
+  border-color: #00aade2f;
+}
+
+.delete-done-btns {
+  display: flex;
+  margin: auto;
+  width: 770px;
+  justify-content: space-between;
+}
+
+#addCardUL {
+  padding-top: 100px;
+  padding-bottom: 20px;
 }

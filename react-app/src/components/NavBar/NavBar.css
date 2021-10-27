@@ -8,6 +8,17 @@ body { margin: 0; padding: 0; background-color: #f2f2f2;; max-width: 100%; overf
        url('Mont-Bold.ttf') format('truetype');
   }
 
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+input {
+  font-family: 'Open Sans', sans-serif;
+  width: 360px;
+  font-size: 16px;
+  /* padding: 4px; */
+}
+
 button:hover {
   cursor: pointer;
 }

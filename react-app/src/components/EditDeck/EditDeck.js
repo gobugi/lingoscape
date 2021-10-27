@@ -70,7 +70,8 @@ const EditDeck = () => {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-  const updateCard = async (e) => {
+
+  const updateCard = (id) => async (e) => {
     e.preventDefault()
 
     const editCard =
@@ -92,7 +93,21 @@ const EditDeck = () => {
     setCurrentQuestion('');
     setCurrentAnswer('');
 
+    document.getElementById(`card-display-${id}`).style.display='block';
+    document.getElementById(`card-form-${id}`).style.display='none';
+
     return data
+  }
+
+
+  const editCard = (id) => async (e) => {
+    document.getElementById(`card-display-${id}`).style.display='none';
+    document.getElementById(`card-form-${id}`).style.display='block';
+  }
+
+  const cancelCard = (id) => async (e) => {
+    document.getElementById(`card-display-${id}`).style.display='block';
+    document.getElementById(`card-form-${id}`).style.display='none';
   }
 
 
@@ -183,7 +198,21 @@ const clearAddCard = async (e) => {
 
           {(currentDeck?.authorId === userId) && myOrderedCards?.map(card => (
             <li>
-              <form onSubmit={updateCard}>
+              <div className="card-display" id={`card-display-${card?.id}`} style={{display:"block"}}>
+                <div className="QAdiv">
+                  <span>{card?.question}</span>
+                </div>
+                <div className="QAdiv">
+                  <span>
+                    {card?.answer}
+                  </span>
+                </div>
+                <div>
+                  <button type="button" onClick={editCard(card?.id)}>Edit</button>
+                  <button type="button" onClick={deleteCard(card?.id)}>Delete</button>
+                </div>
+              </div>
+              <form id={`card-form-${card?.id}`} style={{display:"none"}} onSubmit={updateCard(card?.id)}>
                 <input
                   id={`card-question-${card?.id}`}
                   className='textInput'
@@ -200,8 +229,8 @@ const clearAddCard = async (e) => {
                   placeholder={card?.answer}
                   onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(document.getElementById(`card-question-${card?.id}`).value), setCurrentAnswer(document.getElementById(`card-answer-${card?.id}`).value) )}
                 />
-                <button>Save</button>
-                <button type="button" onClick={deleteCard(card?.id)}>Delete</button>
+                <button onClick={updateCard(card?.id)}>Save</button>
+                <button type="button" onClick={cancelCard(card?.id)}>Cancel</button>
               </form>
             </li>
           ))}
@@ -209,7 +238,7 @@ const clearAddCard = async (e) => {
         </ul>
 
         {(currentDeck?.authorId === userId) &&
-        <ul>
+        <ul id="addCardUL">
           <li>
             <form id="addCardForm" onSubmit={addCard} >
               <span className='createCard'>
@@ -239,7 +268,7 @@ const clearAddCard = async (e) => {
         }
 
         {(currentDeck?.authorId === userId) &&
-          <div>
+          <div className="delete-done-btns">
             <button onClick={deleteDeck}>Delete Deck</button>
             <NavLink to={`/decks/${deckId}`}>
               <button>Done</button>
