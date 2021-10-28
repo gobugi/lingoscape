@@ -39,9 +39,12 @@ const EditDeck = () => {
 
   const renameDeck = async (e) => {
     e.preventDefault()
+    setErrors([]);
 
     const editDeck = {
-      "title": currentTitle
+      "title": currentTitle,
+      "authorId": currentDeck?.authorId,
+      "languageId": currentDeck?.languageId
     }
 
     const deckData = await fetch(`/api/decks/${deckId}`, {
@@ -51,12 +54,25 @@ const EditDeck = () => {
             "Content-Type": "application/json"
           }
       })
-      const data = await deckData.json()
 
-      setCurrentDeck({...data})
+      if (deckData.ok) {
+        const data = await deckData.json();
+        setCurrentDeck({...data})
 
-      document.getElementById("edit-title").style.display="none";
-      document.getElementById("revealTitleBtn").style.display="block";
+        document.getElementById("edit-title").style.display="none";
+        document.getElementById("revealTitleBtn").style.display="block";
+
+        return data;
+      } else if (deckData.status < 500) {
+        const data = await deckData.json();
+        if (data.errors) {
+          setErrors(data.errors);
+
+          return data;
+        }
+      } else {
+          return ['An error occurred. Please try again.']
+      }
 
     return currentDeck
   }
@@ -73,11 +89,13 @@ const EditDeck = () => {
 
   const updateCard = (id) => async (e) => {
     e.preventDefault()
+    setErrors([]);
 
     const editCard =
     {
       "question": currentQuestion,
       "answer": currentAnswer,
+      deckId
     }
 
     const cardData = await fetch(`/api/cards/${currentCard?.id}`, {
@@ -87,16 +105,32 @@ const EditDeck = () => {
             "Content-Type": "application/json"
           }
       })
-    const data = await cardData.json()
 
-    setCurrentCard({});
-    setCurrentQuestion('');
-    setCurrentAnswer('');
 
-    document.getElementById(`card-display-${id}`).style.display='block';
-    document.getElementById(`card-form-${id}`).style.display='none';
 
-    return data
+
+      if (cardData.ok) {
+        const data = await cardData.json()
+        setCurrentCard({});
+        setCurrentQuestion('');
+        setCurrentAnswer('');
+
+        document.getElementById(`card-display-${id}`).style.display='block';
+        document.getElementById(`card-form-${id}`).style.display='none';
+
+        return data;
+      } else if (cardData.status < 500) {
+        const data = await cardData.json();
+        if (data.errors) {
+          setErrors(data.errors);
+
+          return data;
+        }
+      } else {
+          return ['An error occurred. Please try again.']
+      }
+
+    return currentCard
   }
 
 
@@ -143,7 +177,7 @@ const myOrderedCards = myCards?.sort(function(a, b) {
 
 const addCard = async (e) => {
   e.preventDefault()
-
+  setErrors([]);
 
   const newCard = {
     deckId,
@@ -161,13 +195,22 @@ const addCard = async (e) => {
 
   });
 
-  const data = await response.json();
+  if (response.ok) {
+    const data = await response.json();
+    setCurrentCard({});
+    setCurrentQuestion('');
+    setCurrentAnswer('');
+    return data;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      setErrors(data.errors);
 
-  setCurrentCard({});
-  setCurrentQuestion('');
-  setCurrentAnswer('');
-
-  return data
+      return data;
+    }
+  } else {
+      return ['An error occurred. Please try again.']
+  }
 }
 
 const clearAddCard = async (e) => {
@@ -175,9 +218,12 @@ const clearAddCard = async (e) => {
   document.getElementById("add-answer").value='';
 }
 
+console.log(errors)
+
 
   return (
     <main id="main-decks-edit">
+      {errors && <div id="title-err">{errors[0]?.split(': ')?.pop(-1)}</div>}
       <div>
 
         <h2>{currentDeck && currentDeck?.title}</h2>

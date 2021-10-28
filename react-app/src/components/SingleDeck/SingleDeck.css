@@ -1,6 +1,7 @@
 #main-deck {
   margin-top: 142px;
   text-align: center;
+  min-width: 1390px;
 }
 
 #main-deck>h2 {
@@ -88,6 +89,6 @@
   margin-top: 20px;
 }
 
-/* #main-deck>div>div>NavLink {
-
-} */
+.QADiv>span {
+  overflow-wrap: break-word;
+}

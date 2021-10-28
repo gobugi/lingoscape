@@ -23,17 +23,22 @@ def single_card(id):
 
 
 @card_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
 def edit_card(id):
     form = CardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    updatedCard = Card.query.get(id)
-    updatedCard.question = form.data['question']
-    updatedCard.answer = form.data['answer']
+    if form.validate_on_submit():
 
-    db.session.commit()
-    return updatedCard.to_dict()
+        updatedCard = Card.query.get(id)
+        updatedCard.question = form.data['question']
+        updatedCard.answer = form.data['answer']
+        updatedCard.deckId = form.data['deckId']
 
-
+        db.session.commit()
+        return updatedCard.to_dict()
+    else:
+        return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 

@@ -36,6 +36,11 @@
   text-align: left;
 }
 
+.card-display>div>span {
+  width: 350px;
+  overflow-wrap: break-word;
+}
+
 .QAdiv {
   border-bottom: solid;
   border-color: #00aade2f;

@@ -8,3 +8,8 @@
   margin-top: 142px;
   text-align: center;
 }
+
+#title-err {
+  margin-bottom: 15px;
+  color: red;
+}

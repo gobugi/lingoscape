@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 
 
 
@@ -10,6 +10,6 @@ class CardForm(FlaskForm):
     deckId = IntegerField(
         'deckId', validators=[DataRequired()])
     question = StringField(
-        'question', validators=[DataRequired()])
+        'question', validators=[DataRequired(), Length(-1, 80, "Max length for flashcard is 80 characters")])
     answer = StringField(
-        'answer', validators=[DataRequired()])
+        'answer', validators=[DataRequired(), Length(-1, 80, "Max length for flashcard is 80 characters")])

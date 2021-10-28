@@ -30,26 +30,22 @@ def single_deck(id):
 
 
 @deck_routes.route('/<int:id>', methods=['PATCH'])
-# @login_required
+@login_required
 def edit_deck(id):
     form = DeckForm()
-    # form['csrf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    updatedDeck = Deck.query.get(id)
-    updatedDeck.title = form.data['title']
+    if form.validate_on_submit():
 
-    db.session.commit()
-    return updatedDeck.to_dict()
+        updatedDeck = Deck.query.get(id)
+        updatedDeck.title = form.data['title']
+        updatedDeck.authorId = form.data['authorId']
+        updatedDeck.languageId = form.data['languageId']
 
-    # if form.validate_on_submit():
-    #     updatedDeck = Deck.query.get(id)
-    #     updatedDeck.title = form.data['title']
-
-    #     db.session.commit()
-    #     return updatedDeck.to_dict()
-    # return {"errors": validation_errors_to_error_messages(form.errors)}, 401
-    # else:
-    #     return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
+        db.session.commit()
+        return updatedDeck.to_dict()
+    else:
+        return { 'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 

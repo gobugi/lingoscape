@@ -25,7 +25,6 @@ const CreateDeck = () => {
 
 
 
-
   const handleDeckSubmit = async (e) => {
     e.preventDefault()
     setErrors([]);
@@ -45,20 +44,35 @@ const CreateDeck = () => {
       }
     });
 
-    const data = await response.json();
 
-    setDeckId(data?.id)
 
-    return data
+    if (response.ok) {
+      const data = await response.json();
+      setDeckId(data?.id)
+      return data;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        setErrors(data.errors);
+
+        return data;
+      }
+    } else {
+        return ['An error occurred. Please try again.']
+    }
   }
+
 
   if (deckId) {
     return <Redirect to={`/decks/edit/${deckId}`} />;
   }
 
+  console.log(errors)
 
   return (
     <main id="main-new-deck">
+      {errors && <div id="title-err">{errors[0]?.slice(8)}</div>}
+
 
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
         <div className='createDeck'>
