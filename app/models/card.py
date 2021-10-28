@@ -5,9 +5,9 @@ class Card(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    question = db.Column(db.String, nullable=False)
+    question = db.Column(db.String(80), nullable=False)
 
-    answer = db.Column(db.String, nullable=False)
+    answer = db.Column(db.String(80), nullable=False)
 
     deckId = db.Column(db.Integer, db.ForeignKey('decks.id'), nullable=False)
 

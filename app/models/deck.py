@@ -5,7 +5,7 @@ class Deck(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    title = db.Column(db.String, nullable=False)
+    title = db.Column(db.String(50), nullable=False)
 
     languageId = db.Column(db.Integer, db.ForeignKey('languages.id'), nullable=False)
     language = db.relationship('Language', back_populates='decks')

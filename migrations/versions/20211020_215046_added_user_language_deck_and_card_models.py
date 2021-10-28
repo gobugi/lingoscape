@@ -1,7 +1,7 @@
 """added user, language, deck and card models
 
 Revision ID: 4ec85371f512
-Revises: 
+Revises:
 Create Date: 2021-10-20 21:50:46.302616
 
 """
@@ -34,7 +34,7 @@ def upgrade():
     )
     op.create_table('decks',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(), nullable=False),
+    sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('languageId', sa.Integer(), nullable=False),
     sa.Column('authorId', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['authorId'], ['users.id'], ),
@@ -43,8 +43,8 @@ def upgrade():
     )
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('question', sa.String(), nullable=False),
-    sa.Column('answer', sa.String(), nullable=False),
+    sa.Column('question', sa.String(length=80), nullable=False),
+    sa.Column('answer', sa.String(length=80), nullable=False),
     sa.Column('deckId', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['deckId'], ['decks.id'], ),
     sa.PrimaryKeyConstraint('id')

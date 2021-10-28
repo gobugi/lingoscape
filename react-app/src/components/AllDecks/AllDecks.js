@@ -10,9 +10,13 @@ const AllDecks = () => {
 
   // const [title, setTitle] = useState("");
   // const [languageId, setLanguageId] = useState("");
-  const [decks, setDecks] = useState("");
 
   const langArr = ["Arabic", "Basque", "Bulgarian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Galician", "German", "Greek", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai", "Turkish", "Ukrainian", "Vietnamese"]
+
+  const [decks, setDecks] = useState("");
+  const [searchWords, setSearchWords] = useState("");
+  const [hiddenLangs, setHiddenLangs] = useState([]);
+
 
   useEffect(() => {
 
@@ -23,7 +27,7 @@ const AllDecks = () => {
     }
 
     all_decks();
-  }, []);
+  }, [searchWords]);
 
   const currLangArr = [];
 
@@ -43,8 +47,94 @@ const AllDecks = () => {
     newArr?.push(langArr[langId - 1])
   })
 
+/////////////////////S E A R C H    F I L T E R////////////////////////////
+
+
+  // langArr?.forEach(lang => {
+  //   if (document.getElementById(`${lang}-div`)) {
+  //     document.getElementById(`${lang}-div`)?.setAttribute("style","display:block;");
+  //   }
+  // })
+
+
+
+  // const lowerLangArr = langArr?.map(lang => {
+  //   return lang?.toLowerCase();
+  // })
+
+  // const searchWordsArr = searchWords?.toLowerCase()?.split(' ');
+
+  // let hiddenLangsArr = []
+
+  // searchWordsArr?.forEach(searchWord => {
+  //   lowerLangArr?.forEach(lang => {
+  //     if (document.getElementById(`${lang[0].toUpperCase() + lang.slice(1)}-div`) && ((lang.indexOf( searchWord ) < 0 ))) {
+  //       hiddenLangsArr.push(`${lang[0].toUpperCase() + lang.slice(1)}-div`)
+
+  //       setHiddenLangs(hiddenLangsArr)
+
+  //     }
+  //   })
+  // })
+
+
+
+// const existingLangs = [];
+
+// langArr?.forEach(lang => {
+//   if (document.getElementById(`${lang}-div`)) {
+//     existingLangs.push(lang?.toLowerCase())
+//   }
+// })
+
+
+
+    // if (existingLangs?.includes(searchWords)) {
+    //   document.getElementsByClassName("lang-div")?.forEach(langDiv => {
+    //     langDiv?.setAttribute("style","display: none;");
+    //   })
+    //   document.getElementById(`${searchWords[0].toUpperCase() + searchWords.slice(1)?.toLowerCase()}-div`)?.setAttribute("style","display: block;");
+    // }
+
+
+
+
+  // hiddenLangs && hiddenLangs?.forEach(hiddenLang => {
+  //   document.getElementById(hiddenLang).style.display="none";
+  //   hiddenLangsArr = [];
+  // })
+
+// }
+
+// setHiddenLangs(hiddenLangsArr)
+// console.log(hiddenLangs)
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
   return (
     <main id="all-decks-main">
+
+      {/* ///////////////////////THIS IS MY SEARCHBAR IMPLEMENTATION TBD////////////////////////////////////
+      <div className="search-bar">
+        <i id="fa-search-decks" className="fas fa-search" style={{display:"block", color:"#d6d4d4"}}></i>
+        <input
+          id="search-field"
+          placeholder="e.g. French, alphabet, KOR 101, vocabulary, intermediate"
+          type="text"
+          // defaultValue=''
+          onChange={(e) => setSearchWords(e.target.value?.toLowerCase())}
+        />
+      </div>
+      /////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
       <div className="all-decks-content">
         <div className="all-decks-header">
@@ -65,7 +155,7 @@ const AllDecks = () => {
 
 
             {newArr && newArr?.map((lang) => (
-              <>
+              <div id={`${lang}-div`} className="lang-div" style={{display:"block"}}>
                 <li className="lang-item">
                   <h4 className="lang-name">
                     {lang}
@@ -82,7 +172,7 @@ const AllDecks = () => {
                     </h5>
                   </li>
                 ))}
-              </>
+              </div>
             ))}
 
           </ul>
