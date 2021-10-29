@@ -8,19 +8,31 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  // const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  // const onSignUp = async (e) => {
+  //   e.preventDefault();
+  //   if (password === repeatPassword) {
+  //     const data = await dispatch(signUp(username, email, password));
+  //     if (data) {
+  //       setErrors(data)
+  //     }
+  //   }
+  // };
+
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+
+    const data = await dispatch(signUp(username, email, password));
+    if (data) {
+      setErrors(data)
     }
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -34,13 +46,15 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  // const updateRepeatPassword = (e) => {
+  //   setRepeatPassword(e.target.value);
+  // };
 
   if (user) {
     return <Redirect to='/dashboard' />;
   }
+
+// console.log(errors)
 
   return (
     <main id="login-main">
@@ -60,7 +74,6 @@ const SignUpForm = () => {
               onChange={updateUsername}
               value={username}
               placeholder='Username'
-              required
             ></input>
           </div>
           <div>
@@ -71,7 +84,6 @@ const SignUpForm = () => {
               onChange={updateEmail}
               value={email}
               placeholder='Email'
-              required
             ></input>
           </div>
           <div>
@@ -82,20 +94,19 @@ const SignUpForm = () => {
               onChange={updatePassword}
               value={password}
               placeholder='Password'
-              required
             ></input>
           </div>
-          <div>
-            {/* <label>Repeat Password</label> */}
+          {/* <div>
+            <label>Repeat Password</label>
             <input
               type='password'
               name='repeat_password'
               onChange={updateRepeatPassword}
               value={repeatPassword}
-              required={true}
+              required
               placeholder='Re-type Password'
             ></input>
-          </div>
+          </div> */}
           <div id="login-btn-div">
             <button type='submit'>Sign Up</button>
           </div>

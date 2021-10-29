@@ -93,3 +93,7 @@
   color: #29A5DC;
   margin-bottom: 0.78em;
 }
+
+#login-container>form>div>div {
+  color: red;
+}

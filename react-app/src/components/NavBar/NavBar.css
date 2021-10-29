@@ -10,12 +10,24 @@ body { margin: 0; padding: 0; background-color: #f2f2f2; max-width: 100%; overfl
 
 button {
   font-family: 'Open Sans', sans-serif;
+  color: white;
+  background-color: #4b4040ed;
+  border-radius: 5px;
+  opacity: 0.75;
+}
+
+button:hover {
+  background-color: #4B4040;
+  opacity: 1;
 }
 
 input {
   font-family: 'Open Sans', sans-serif;
   width: 360px;
   font-size: 16px;
+  border-radius: 3px;
+  border-color: #4B4040;
+  border-width: 1px;
 }
 
 input:focus {
@@ -29,6 +41,8 @@ input:focus {
 select {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+  border-radius: 3px;
+  border-color: #4B4040;
 }
 
 select:focus {

@@ -204,26 +204,19 @@ const addCard = async (e) => {
     setCurrentCard({});
     setCurrentQuestion('');
     setCurrentAnswer('');
+    document.getElementById("add-question").value='';
+    document.getElementById("add-answer").value='';
     return data;
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
       setErrors(data.errors);
       setCurrentCard({});
-      setCurrentQuestion('');
-      setCurrentAnswer('');
       return data;
     }
   } else {
       return ['An error occurred. Please try again.']
   }
-}
-
-const clearAddCard = async (e) => {
-
-  document.getElementById("add-question").value='';
-  document.getElementById("add-answer").value='';
-
 }
 
 // console.log(errors)
@@ -286,7 +279,7 @@ const clearAddCard = async (e) => {
                   placeholder={card?.answer}
                   onChange={(e) => ( setCurrentCard(card), setCurrentQuestion(document.getElementById(`card-question-${card?.id}`).value), setCurrentAnswer(document.getElementById(`card-answer-${card?.id}`).value) )}
                 />
-                <button onClick={updateCard(card?.id)}>Save</button>
+                <button>Save</button>
                 <button type="button" onClick={cancelCard(card?.id)}>Cancel</button>
               </form>
             </li>
@@ -318,7 +311,7 @@ const clearAddCard = async (e) => {
                   placeholder='Ex: 안녕하세요'
                 />
               </span>
-              <button className='create-card-btn' onClick={clearAddCard}>Add Card</button>
+              <button className='create-card-btn'>Add Card</button>
             </form>
           </li>
         </ul>
