@@ -11,7 +11,7 @@ const CreateDeck = () => {
   const currUserId = sessionUser?.id;
 
   const [title, setTitle] = useState("");
-  const [languageId, setLanguageId] = useState("");
+  const [languageId, setLanguageId] = useState(0);
   const [errors , setErrors] = useState([]);
 
 
@@ -67,11 +67,19 @@ const CreateDeck = () => {
     return <Redirect to={`/decks/edit/${deckId}`} />;
   }
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <main id="main-new-deck">
-      {errors && <div id="title-err">{errors[0]?.slice(8)}</div>}
+
+      <h1 id="create-deck-heading" className="all-decks-heading">
+        Let's get started
+      </h1>
+
+      {errors && errors?.map(err => (
+        <div className="err-msg">{err?.split(': ')?.pop(-1)}</div>
+      ))
+      }
 
 
       <form id="createDeckForm" onSubmit={handleDeckSubmit}>
@@ -80,7 +88,7 @@ const CreateDeck = () => {
           <input
             className='textInput'
             type="text"
-            value={title}
+            defaultValue=""
             onChange={(e) => setTitle(e.target.value)}
             placeholder='Deck Name'
           />
@@ -90,7 +98,7 @@ const CreateDeck = () => {
             <select
               className='langSelect'
               onChange={(e) => setLanguageId(e.target.value)}>
-              <option>&nbsp;&nbsp;&nbsp;-- Select Language --&nbsp;&nbsp;&nbsp;</option>
+              <option value={0}>&nbsp;&nbsp;&nbsp;-- Select Language --&nbsp;&nbsp;&nbsp;</option>
               {langArr?.map((lang, i) => (
                 <option value={i += 1}>{lang}</option>
               ))}

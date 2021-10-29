@@ -13,3 +13,12 @@
   margin-bottom: 15px;
   color: red;
 }
+
+
+#create-deck-heading {
+  margin-bottom: 40px;
+}
+
+#createDeckForm {
+  margin-top: 40px;
+}

@@ -142,6 +142,10 @@ const EditDeck = () => {
   const cancelCard = (id) => async (e) => {
     document.getElementById(`card-display-${id}`).style.display='block';
     document.getElementById(`card-form-${id}`).style.display='none';
+    setErrors([]);
+    setCurrentCard({});
+    setCurrentQuestion('');
+    setCurrentAnswer('');
   }
 
 
@@ -205,7 +209,9 @@ const addCard = async (e) => {
     const data = await response.json();
     if (data.errors) {
       setErrors(data.errors);
-
+      setCurrentCard({});
+      setCurrentQuestion('');
+      setCurrentAnswer('');
       return data;
     }
   } else {
@@ -214,16 +220,21 @@ const addCard = async (e) => {
 }
 
 const clearAddCard = async (e) => {
+
   document.getElementById("add-question").value='';
   document.getElementById("add-answer").value='';
+
 }
 
-console.log(errors)
+// console.log(errors)
 
 
   return (
     <main id="main-decks-edit">
-      {errors && <div id="title-err">{errors[0]?.split(': ')?.pop(-1)}</div>}
+      {errors && errors?.map(err => (
+        <div className="err-msg">{err?.split(': ')?.pop(-1)}</div>
+      ))
+      }
       <div>
 
         <h2>{currentDeck && currentDeck?.title}</h2>
