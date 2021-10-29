@@ -229,8 +229,10 @@ const addCard = async (e) => {
       ))
       }
       <div>
-
-        <h2>{currentDeck && currentDeck?.title}</h2>
+        <div>
+          <h2>{currentDeck && currentDeck?.title}</h2>
+          <button id="revealTitleBtn" style={{display:"block"}} onClick={revealTitleForm}>Rename</button>
+        </div>
         { currentDeck?.authorId === userId &&
         <form id="edit-title" onSubmit={renameDeck} style={{display:"none"}}>
           <input
@@ -241,7 +243,7 @@ const addCard = async (e) => {
           />
           <button>Rename</button>
         </form> }
-        <button id="revealTitleBtn" style={{display:"block"}} onClick={revealTitleForm}>Rename</button>
+
 
 
         <ul>
