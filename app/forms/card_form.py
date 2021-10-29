@@ -10,6 +10,6 @@ class CardForm(FlaskForm):
     deckId = IntegerField(
         'deckId', validators=[DataRequired()])
     question = StringField(
-        'question', validators=[DataRequired(), Length(-1, 80, "Max length for flashcard is 80 characters")])
+        'question', validators=[DataRequired("Field input required"), Length(-1, 80, "Max length for flashcard is 80 characters")])
     answer = StringField(
-        'answer', validators=[DataRequired(), Length(-1, 80, "Max length for flashcard is 80 characters")])
+        'answer', validators=[DataRequired("Field input required"), Length(-1, 80, "Max length for flashcard is 80 characters")])

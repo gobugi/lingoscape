@@ -11,8 +11,8 @@ from wtforms.validators import DataRequired, ValidationError, Length
 
 class DeckForm(FlaskForm):
     languageId = IntegerField(
-        'languageId', validators=[DataRequired()])
+        'languageId', validators=[DataRequired("Must select a language")])
     authorId = IntegerField(
         'authorId', validators=[DataRequired()])
     title = StringField(
-        'title', validators=[DataRequired(), Length(-1, 50, "Max length for title is 50 characters")])
+        'title', validators=[DataRequired("Title input required"), Length(-1, 50, "Max length for title is 50 characters")])
