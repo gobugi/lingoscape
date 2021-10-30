@@ -55,15 +55,15 @@ const Dashboard = () => {
   return (
     <main id="all-decks-main">
 
-      <div className="all-decks-content">
+      <div id="all-decks-content-dashboard" className="all-decks-content">
         <div className="all-decks-header">
           <div className="all-decks-title">
             <h1 className="all-decks-heading">
-              {`Welcome back ${sessionUser?.username}`}
+              {`Welcome back ${sessionUser?.username}.`}
             </h1>
           </div>
 
-          <div className="all-decks-blurb">
+          <div id="all-decks-blurb-dashboard" className="all-decks-blurb">
             My Decks
           </div>
         </div>
