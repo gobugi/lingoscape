@@ -50,70 +50,22 @@ const AllDecks = () => {
 /////////////////////S E A R C H    F I L T E R////////////////////////////
 
 
-  // langArr?.forEach(lang => {
-  //   if (document.getElementById(`${lang}-div`)) {
-  //     document.getElementById(`${lang}-div`)?.setAttribute("style","display:block;");
-  //   }
-  // })
+if (document.getElementById("search-field")?.value) {
 
-
-
-  // const lowerLangArr = langArr?.map(lang => {
-  //   return lang?.toLowerCase();
-  // })
-
-  // const searchWordsArr = searchWords?.toLowerCase()?.split(' ');
-
-  // let hiddenLangsArr = []
-
-  // searchWordsArr?.forEach(searchWord => {
-  //   lowerLangArr?.forEach(lang => {
-  //     if (document.getElementById(`${lang[0].toUpperCase() + lang.slice(1)}-div`) && ((lang.indexOf( searchWord ) < 0 ))) {
-  //       hiddenLangsArr.push(`${lang[0].toUpperCase() + lang.slice(1)}-div`)
-
-  //       setHiddenLangs(hiddenLangsArr)
-
-  //     }
-  //   })
-  // })
-
-
-
-// const existingLangs = [];
-
-// langArr?.forEach(lang => {
-//   if (document.getElementById(`${lang}-div`)) {
-//     existingLangs.push(lang?.toLowerCase())
-//   }
-// })
-
-
-
-    // if (existingLangs?.includes(searchWords)) {
-    //   document.getElementsByClassName("lang-div")?.forEach(langDiv => {
-    //     langDiv?.setAttribute("style","display: none;");
-    //   })
-    //   document.getElementById(`${searchWords[0].toUpperCase() + searchWords.slice(1)?.toLowerCase()}-div`)?.setAttribute("style","display: block;");
-    // }
-
-
-
-
-  // hiddenLangs && hiddenLangs?.forEach(hiddenLang => {
-  //   document.getElementById(hiddenLang).style.display="none";
-  //   hiddenLangsArr = [];
-  // })
-
-// }
-
-// setHiddenLangs(hiddenLangsArr)
-// console.log(hiddenLangs)
-
-
-
-
-
-
+  langArr?.forEach(lang => {
+    if ( document.getElementById(`${lang}-div`) && lang?.toLowerCase()?.includes(document.getElementById("search-field")?.value?.toLowerCase()) ) {
+      document.getElementById(`${lang}-div`)?.setAttribute("style","display:block;");
+    } else if ( document.getElementById(`${lang}-div`) && !lang?.toLowerCase()?.includes(document.getElementById("search-field")?.value?.toLowerCase()) ) {
+      document.getElementById(`${lang}-div`)?.setAttribute("style","display:none;");
+    }
+  })
+} else {
+  langArr?.forEach(lang => {
+    if (document.getElementById(`${lang}-div`)) {
+      document.getElementById(`${lang}-div`)?.setAttribute("style","display:block;");
+    }
+  })
+}
 
 
 ///////////////////////////////////////////////////////////////////////////
@@ -123,18 +75,18 @@ const AllDecks = () => {
   return (
     <main id="all-decks-main">
 
-      {/* ///////////////////////THIS IS MY SEARCHBAR IMPLEMENTATION TBD////////////////////////////////////
+      {/* ///////////////////////THIS IS MY SEARCHBAR IMPLEMENTATION TBD//////////////////////////////////// */}
       <div className="search-bar">
         <i id="fa-search-decks" className="fas fa-search" style={{display:"block", color:"#d6d4d4"}}></i>
         <input
           id="search-field"
-          placeholder="e.g. French, alphabet, KOR 101, vocabulary, intermediate"
+          placeholder="Search by language e.g. French, Korean, Spanish"
           type="text"
           // defaultValue=''
           onChange={(e) => setSearchWords(e.target.value?.toLowerCase())}
         />
       </div>
-      //////////////////////////////////////////////////////////////////////////////////////////////////// */}
+      {/* //////////////////////////////////////////////////////////////////////////////////////////////////// */}
 
       <div className="all-decks-content">
         <div className="all-decks-header">

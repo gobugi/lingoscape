@@ -1,3 +1,13 @@
-#main-dashboard {
-  z-index: 5000;
+#all-decks-content-dashboard {
+  padding: 98px 4% 42px;
+}
+
+
+
+
+
+#all-decks-blurb-dashboard {
+  margin: 40px 0 25px;
+  font-size: 20px;
+  font-weight: 300;
 }

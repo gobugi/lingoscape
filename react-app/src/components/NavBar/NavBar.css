@@ -31,11 +31,11 @@ input {
 }
 
 input:focus {
-  border-color:rgba(41,165,220,.8);
+  border-color:rgba(63,174,224,.8);
   outline:0;
-  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
-  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
-  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
 }
 
 select {
@@ -46,11 +46,11 @@ select {
 }
 
 select:focus {
-  border-color:rgba(41,165,220,.8);
+  border-color:rgba(63,174,224,.8);
   outline:0;
-  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
-  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
-  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(41,165,220,.6);
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(63,174,224,.6);
 }
 
 
