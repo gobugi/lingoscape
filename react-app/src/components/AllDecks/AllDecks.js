@@ -53,12 +53,13 @@ const AllDecks = () => {
 if (document.getElementById("search-field")?.value) {
 
   langArr?.forEach(lang => {
-    if ( document.getElementById(`${lang}-div`) && lang?.toLowerCase()?.includes(document.getElementById("search-field")?.value?.toLowerCase()) ) {
+    if ( document.getElementById(`${lang}-div`) && lang?.toLowerCase()?.startsWith(document.getElementById("search-field")?.value?.toLowerCase()) ) {
       document.getElementById(`${lang}-div`)?.setAttribute("style","display:block;");
-    } else if ( document.getElementById(`${lang}-div`) && !lang?.toLowerCase()?.includes(document.getElementById("search-field")?.value?.toLowerCase()) ) {
+    } else if ( document.getElementById(`${lang}-div`) && !lang?.toLowerCase()?.startsWith(document.getElementById("search-field")?.value?.toLowerCase()) ) {
       document.getElementById(`${lang}-div`)?.setAttribute("style","display:none;");
     }
   })
+  
 } else {
   langArr?.forEach(lang => {
     if (document.getElementById(`${lang}-div`)) {
@@ -80,7 +81,7 @@ const myOrderedDecks = decks?.decks?.sort(function(a, b) {
   return (
     <main id="all-decks-main">
 
-      {/* ///////////////////////THIS IS MY SEARCHBAR IMPLEMENTATION TBD//////////////////////////////////// */}
+      {/* ///////////////////////THIS IS MY SEARCHBAR IMPLEMENTATION//////////////////////////////////// */}
       <div className="search-bar">
         <i id="fa-search-decks" className="fas fa-search" style={{display:"block", color:"#d6d4d4"}}></i>
         <input
