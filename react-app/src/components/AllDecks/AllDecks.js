@@ -68,6 +68,11 @@ if (document.getElementById("search-field")?.value) {
 }
 
 
+const myOrderedDecks = decks?.decks?.sort(function(a, b) {
+  return a?.title?.toLowerCase()?.localeCompare(b?.title?.toLowerCase());
+});
+
+
 ///////////////////////////////////////////////////////////////////////////
 
 
@@ -113,7 +118,7 @@ if (document.getElementById("search-field")?.value) {
                     {lang}
                   </h4>
                 </li>
-                {decks && decks?.decks?.map((deck) => (
+                {decks && myOrderedDecks?.map((deck) => (
                   currLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
                   <li className="lang-decks-list">
                     <h5 className="deck-name">
