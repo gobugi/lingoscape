@@ -96,8 +96,7 @@ const Dashboard = () => {
     !newFavArr?.includes(langArr[langId - 1]) && newFavArr?.push(langArr[langId - 1])
   })
 
-
-
+  
 
   return (
     <main id="all-decks-main">
@@ -169,7 +168,7 @@ const Dashboard = () => {
                     {lang}
                   </h4>
                 </li>
-                {allDecks && allDecks?.map((deck) => (
+                {allDecks && allDecks?.sort((a, b) => a?.title?.toLowerCase()?.localeCompare(b?.title?.toLowerCase()))?.map((deck) => (
                   currFavLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang && favDecks?.includes(deck?.id) &&
                   <li className="lang-decks-list">
                     <h5 className="deck-name">
