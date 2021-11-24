@@ -39,7 +39,7 @@ const Homepage = () => {
       </Carousel>
 
       <div id="about-me">
-        <span>{`Johnny Park`}</span>
+      <a href="https://johnnypark.me/" rel="noreferrer" target="_blank">Johnny Park</a>
         <span id="divider-span">{` | `}</span>
         <a href="https://www.linkedin.com/in/johnny-park-b81857212" rel="noreferrer" target="_blank">
           <i className="fab fa-linkedin"></i>
