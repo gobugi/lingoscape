@@ -5,12 +5,13 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
-from .models import db, User, Language, Deck, Card
+from .models import db, User, Language, Deck, Card, Favorite
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.deck_routes import deck_routes
 from .api.card_routes import card_routes
 from .api.language_routes import language_routes
+from .api.favorite_routes import favorite_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(deck_routes, url_prefix='/api/decks')
 app.register_blueprint(card_routes, url_prefix='/api/cards')
 app.register_blueprint(language_routes, url_prefix='/api/languages')
+app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
 db.init_app(app)
 Migrate(app, db)
 

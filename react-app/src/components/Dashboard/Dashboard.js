@@ -10,6 +10,7 @@ const Dashboard = () => {
 
 	const [allDecks, setAllDecks] = useState([]);
 	const [myDecks, setMyDecks] = useState([]);
+  const [favs, setFavs] = useState([]);
 
   const langArr = ["Arabic", "Basque", "Bulgarian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Galician", "German", "Greek", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai", "Turkish", "Ukrainian", "Vietnamese"]
 
@@ -26,6 +27,21 @@ const Dashboard = () => {
       setMyDecks(myDecksArr)
 		}
     my_deck();
+	}, []);
+
+
+  useEffect(() => {
+    async function my_favs() {
+			const response = await fetch(`/api/favorites/`);
+			const responseData = await response.json();
+
+      const myFavsArr = [];
+      responseData?.favorites?.forEach(deck => {
+        deck?.followerId === userId && myFavsArr?.push(deck)
+      })
+      setFavs(myFavsArr)
+		}
+    my_favs();
 	}, []);
 
 
@@ -47,6 +63,32 @@ const Dashboard = () => {
   currLangArr?.forEach(langId => {
     newArr?.push(langArr[langId - 1])
   })
+
+
+
+
+
+  const currFavLangArr = [];
+
+  allDecks && allDecks?.forEach(ele => {
+    favs?.forEach(deck => {
+
+      if (ele?.id === deck?.deckId) {
+        currFavLangArr.push(ele?.languageId)
+      }
+    })
+  });
+
+  currFavLangArr?.sort(function(a, b) {
+    return a - b;
+  });
+
+  const newFavArr = [];
+
+  currFavLangArr?.forEach(langId => {
+    newFavArr?.push(langArr[langId - 1])
+  })
+
 
 
 
@@ -86,7 +128,7 @@ const Dashboard = () => {
                     <h5 className="deck-name">
                       <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
                         {`${deck?.title}`}
-                        <i class="fas fa-caret-right"></i>
+                        <i className="fas fa-caret-right"></i>
                       </NavLink>
                     </h5>
                   </li>
@@ -97,6 +139,50 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
+
+
+
+      <div id="all-decks-content-dashboard" className="all-decks-content">
+        <div className="all-decks-header">
+          <div className="all-decks-title">
+          </div>
+          <hr />
+          <div id="all-decks-blurb-dashboard" className="all-decks-blurb">
+            My Favorites
+          </div>
+        </div>
+
+        <div className="all-decks-body">
+          <ul className="all-langs-list">
+            <li className="lang-item" id="list-initial-spacer" />
+
+
+            {newFavArr && newFavArr?.map((lang) => (
+              <>
+                <li className="lang-item">
+                  <h4 className="lang-name">
+                    {lang}
+                  </h4>
+                </li>
+                {allDecks && allDecks?.map((deck) => (
+                  currFavLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
+                  <li className="lang-decks-list">
+                    <h5 className="deck-name">
+                      <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
+                        {`${deck?.title}`}
+                        <i className="fas fa-caret-right"></i>
+                      </NavLink>
+                    </h5>
+                  </li>
+                ))}
+              </>
+            ))}
+
+          </ul>
+        </div>
+      </div>
+
+
 
     </main>
   )

@@ -93,3 +93,35 @@
 .QADiv>span {
   overflow-wrap: break-word;
 }
+
+.fas.fa-star {
+  color: orange;
+  font-size: 1.5rem;
+  width: 1.5rem;
+  margin: auto;
+  margin-top: -50px;
+  margin-bottom: 30px;
+}
+
+.far.fa-star {
+  color: rgba(255, 166, 0, 0.534);
+  font-size: 1.5rem;
+  width: 1.5rem;
+  margin: auto;
+  margin-top: -50px;
+  margin-bottom: 30px;
+}
+
+.fas.fa-star:hover {
+  color: rgba(255, 166, 0, 0.534);
+  transition-duration: 0.25s;
+  transition-timing-function: linear;
+  cursor: pointer;
+}
+
+.far.fa-star:hover {
+  color: orange;
+  transition-duration: 0.25s;
+  transition-timing-function: linear;
+  cursor: pointer;
+}

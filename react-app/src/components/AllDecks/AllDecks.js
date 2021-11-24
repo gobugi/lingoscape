@@ -59,7 +59,7 @@ if (document.getElementById("search-field")?.value) {
       document.getElementById(`${lang}-div`)?.setAttribute("style","display:none;");
     }
   })
-  
+
 } else {
   langArr?.forEach(lang => {
     if (document.getElementById(`${lang}-div`)) {
@@ -125,7 +125,7 @@ const myOrderedDecks = decks?.decks?.sort(function(a, b) {
                     <h5 className="deck-name">
                       <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
                         {`${deck?.title}`}
-                        <i class="fas fa-caret-right"></i>
+                        <i className="fas fa-caret-right"></i>
                       </NavLink>
                     </h5>
                   </li>
