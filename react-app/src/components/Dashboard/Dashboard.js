@@ -93,7 +93,7 @@ const Dashboard = () => {
   const newFavArr = [];
 
   currFavLangArr?.forEach(langId => {
-    newFavArr?.push(langArr[langId - 1])
+    !newFavArr?.includes(langArr[langId - 1]) && newFavArr?.push(langArr[langId - 1])
   })
 
 
