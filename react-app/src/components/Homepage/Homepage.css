@@ -115,7 +115,7 @@ background-color: #EEEEEE;
 #about-me {
   bottom: 12%;
   position: absolute;
-  z-index: 2;
+  z-index: 1000;
   left: calc(100% - 220px);
   color: #00AADE;
   width: 970px;
