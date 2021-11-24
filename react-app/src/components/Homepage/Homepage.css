@@ -121,6 +121,22 @@ background-color: #EEEEEE;
   width: 970px;
 }
 
+#about-me>a {
+  text-decoration: none;
+}
+
+#about-me>a:link {
+  color: #00AADE;
+}
+
+#about-me>a:active {
+  color: #00AADE;
+}
+
+#about-me>a:visited {
+  color: #00AADE;
+}
+
 #divider-span {
   color: white;
 }
