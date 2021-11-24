@@ -96,16 +96,16 @@ const Dashboard = () => {
     !newFavArr?.includes(langArr[langId - 1]) && newFavArr?.push(langArr[langId - 1])
   })
 
-  
+
 
   return (
     <main id="all-decks-main">
-
       <div id="all-decks-content-dashboard" className="all-decks-content">
         <div className="all-decks-header">
           <div className="all-decks-title">
+            <h5><br /></ h5>
             <h1 className="all-decks-heading">
-              {`Welcome back ${sessionUser?.username}.`}
+              {`Welcome back, ${sessionUser?.username}.`}
             </h1>
           </div>
 
@@ -142,14 +142,14 @@ const Dashboard = () => {
 
           </ul>
         </div>
-      </div>
 
 
-
-      <div id="all-decks-content-dashboard" className="all-decks-content">
         <div className="all-decks-header">
           <div className="all-decks-title">
           </div>
+          <br />
+          <br />
+          <br />
           <hr />
           <div id="all-decks-blurb-dashboard" className="all-decks-blurb">
             My Favorites
@@ -185,9 +185,6 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-
-
-
     </main>
   )
 
