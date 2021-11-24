@@ -11,6 +11,7 @@ const Dashboard = () => {
 	const [allDecks, setAllDecks] = useState([]);
 	const [myDecks, setMyDecks] = useState([]);
   const [favs, setFavs] = useState([]);
+  const [favDecks, setFavDecks] = useState([]);
 
   const langArr = ["Arabic", "Basque", "Bulgarian", "Catalan", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Galician", "German", "Greek", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Serbian", "Slovak", "Slovenian", "Spanish", "Swedish", "Thai", "Turkish", "Ukrainian", "Vietnamese"]
 
@@ -40,6 +41,12 @@ const Dashboard = () => {
         deck?.followerId === userId && myFavsArr?.push(deck)
       })
       setFavs(myFavsArr)
+
+      const myFavDecksArr = [];
+      responseData?.favorites?.forEach(deck => {
+        deck?.followerId === userId && myFavDecksArr?.push(deck?.deckId)
+      })
+      setFavDecks(myFavDecksArr)
 		}
     my_favs();
 	}, []);
@@ -88,8 +95,6 @@ const Dashboard = () => {
   currFavLangArr?.forEach(langId => {
     newFavArr?.push(langArr[langId - 1])
   })
-
-
 
 
 
@@ -165,7 +170,7 @@ const Dashboard = () => {
                   </h4>
                 </li>
                 {allDecks && allDecks?.map((deck) => (
-                  currFavLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang &&
+                  currFavLangArr?.includes(deck?.languageId) && langArr[deck?.languageId - 1] === lang && favDecks?.includes(deck?.id) &&
                   <li className="lang-decks-list">
                     <h5 className="deck-name">
                       <NavLink className="deck-link" to={`/decks/${deck?.id}`}>
